@@ -196,7 +196,7 @@ remove 'rack-mini-profiler'
 open Gemfile remove 
 gem 'rack-mini-profiler', '~> 2.0'
 
-![Screenshot from 2021-10-09 16-29-11](https://user-images.githubusercontent.com/21187699/136676341-4d5784ee-06b0-4668-bf05-cf17a44dc146.png)
+![Screenshot from 2021-10-09 16-29-111](https://user-images.githubusercontent.com/21187699/136676571-59a2444b-91eb-4e6a-970d-c8263bfd77a6.png)
 
 
 
