@@ -179,19 +179,30 @@ Now open your web browser and type localhost with port '3000' on the address bar
 ```browser
 http://localhost:3000/posts
 ```
+### configuration
 
 
-disable mini rack-mini-profiler gem
+#### disable mini rack-mini-profiler gem
 
 ```browser
 http://localhost:3000/?pp=disable
 ```
 more about rack-mini-profiler gem  http://localhost:3000/?pp=help
 
+remove 'rack-mini-profiler'
+![Screenshot from 2021-10-09 16-26-57](https://user-images.githubusercontent.com/21187699/136676229-84957d74-c870-44c8-bb78-963147bcb251.png)
 
-### configuration
+open Gemfile remove 
+gem 'rack-mini-profiler', '~> 2.0'
 
-database configuration 'config/database.yml'.
+![Screenshot from 2021-10-09 16-26-57](https://user-images.githubusercontent.com/21187699/136676229-84957d74-c870-44c8-bb78-963147bcb251.png)
+
+
+
+
+
+
+#### database configuration 'config/database.yml'.
 
 
 
