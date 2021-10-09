@@ -33,7 +33,7 @@ psql (PostgreSQL) 12.8 (Ubuntu 12.8-0ubuntu0.20.04.1)
 ## Installing Rails
 
 
-Step 1 - Install Nodejs and Yarn
+# Step 1 - Install Nodejs and Yarn
 
 For the Ruby on Rails, we need the JavaScript Runtime for compiling Ruby on the Rails asset pipeline. And for this guide, we will use the Nodejs and Yarn package manager, which can be installed from the Nodesource repository.
 
@@ -84,7 +84,7 @@ And you will get the Yarn '1.22.4' installed on the system.
 As a result, the installation of Nodejs and Yarn package manager for Ruby on Rails has been completed.
 
 
-Step 2 - Update RubyGem Package Manager
+# Step 2 - Update RubyGem Package Manager
 
 RubyGems is a Ruby Package Manager, coming with the gem command-line tool. It's automatically installed when we install Ruby on the system.
 
@@ -115,7 +115,7 @@ gem -v
 As a result, you will get the RubyGem updated to the latest version '3.1.3'.
 
 
-Step 3 - Install Ruby on Rails
+# Step 3 - Install Ruby on Rails
 In this step, we will install the latest version of Ruby on Rails through the RubyGem package manager.
 
 Install Ruby on Rails using the gem command below.
@@ -133,7 +133,7 @@ You will get the Rails 6.1.4.1 version installed on your system.
 
 ## test and configuration Rails
 
-Create a new project 'rails_test' with the default database PostgreSQL using the following 'rails' command.
+# Create a new project 'rails_test' with the default database PostgreSQL using the following 'rails' command.
 
 ```shell
 rails new rails_test -d postgresql -T
@@ -164,7 +164,7 @@ http://localhost:3000/
 ```
 
 
-Generate the simple CRUD application using the ruby scaffold command as below.
+# Generate the simple CRUD application using the ruby scaffold command as below.
 
 ```shell
 rails g scaffold Post title:string body:text
@@ -186,6 +186,8 @@ http://localhost:3000/?pp=disable
 ```
 more about rack-mini-profiler gem  http://localhost:3000/?pp=help
 
+
+# configuration
 
 database configuration 'config/database.yml'.
 
