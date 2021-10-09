@@ -163,6 +163,8 @@ Now open your web browser and type localhost with port '3000' on the address bar
 http://localhost:3000/
 ```
 
+![Screenshot from 2021-10-09 16-20-37](https://user-images.githubusercontent.com/21187699/136676091-ff7e8efa-5e48-45b9-a938-d6bc11ed2bab.png)
+
 
 ### Generate the simple CRUD application using the ruby scaffold command as below.
 
