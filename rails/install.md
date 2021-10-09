@@ -133,7 +133,7 @@ You will get the Rails 6.1.4.1 version installed on your system.
 
 ## test and configuration Rails
 
-# Create a new project 'rails_test' with the default database PostgreSQL using the following 'rails' command.
+### Create a new project 'rails_test' with the default database PostgreSQL using the following 'rails' command.
 
 ```shell
 rails new rails_test -d postgresql -T
@@ -164,7 +164,7 @@ http://localhost:3000/
 ```
 
 
-# Generate the simple CRUD application using the ruby scaffold command as below.
+### Generate the simple CRUD application using the ruby scaffold command as below.
 
 ```shell
 rails g scaffold Post title:string body:text
@@ -187,7 +187,7 @@ http://localhost:3000/?pp=disable
 more about rack-mini-profiler gem  http://localhost:3000/?pp=help
 
 
-# configuration
+### configuration
 
 database configuration 'config/database.yml'.
 
