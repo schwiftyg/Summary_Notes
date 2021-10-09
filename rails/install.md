@@ -190,13 +190,13 @@ http://localhost:3000/?pp=disable
 more about rack-mini-profiler gem  http://localhost:3000/?pp=help
 
 remove 'rack-mini-profiler'
+
 ![Screenshot from 2021-10-09 16-26-57](https://user-images.githubusercontent.com/21187699/136676229-84957d74-c870-44c8-bb78-963147bcb251.png)
 
 open Gemfile remove 
 gem 'rack-mini-profiler', '~> 2.0'
 
-![Screenshot from 2021-10-09 16-26-57](https://user-images.githubusercontent.com/21187699/136676229-84957d74-c870-44c8-bb78-963147bcb251.png)
-
+![Screenshot from 2021-10-09 16-29-11](https://user-images.githubusercontent.com/21187699/136676341-4d5784ee-06b0-4668-bf05-cf17a44dc146.png)
 
 
 
