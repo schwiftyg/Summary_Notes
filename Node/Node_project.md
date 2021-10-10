@@ -22,18 +22,18 @@ npm init -y
 ```shell  
 npm i ejs express knex method-override pg
 ```
->ejs:  html template file
->express:  node simple web sever
->knex: node database connection
->method-override: for edit, delete action
->pg :postgreSQL database
+ejs:  html template file
+express:  node simple web sever
+knex: node database connection
+method-override: for edit, delete action
+pg :postgreSQL database
 
 ### install development modules with option -D
 
 ```shell  
 npm i -D concurrently faker http-server morgan nodemon 
 ```
->faker : test date for seed
->morgan: for showing test data
->nodemon: keep runnig server for test  
->optional:  concurrently, http-server for inputing demo image
+faker : test date for seed
+morgan: for showing test data
+nodemon: keep runnig server for test  
+optional:  concurrently, http-server for inputing demo image
