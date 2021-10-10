@@ -219,3 +219,12 @@ gem  install pry
 
 
 Reference document: https://www.howtoforge.com/tutorial/ubuntu-ruby-on-rails/
+
+
+### Rails - Gem Error while installing pg (1.1.3), and Bundler cannot continue
+
+```shell
+sudo apt install postgresql-contrib libpq-dev
+```
+
+https://stackoverflow.com/questions/52339221/rails-gem-error-while-installing-pg-1-1-3-and-bundler-cannot-continue
