@@ -3,7 +3,7 @@ Rails is an open source framework that helps us build web application rapidly. I
 
 ## pre-install --Basic on on Ubuntu 20.04.3 LTS
 
-1. RVM Ruby Version Manager
+### 1. RVM Ruby Version Manager
 
 ```shell
 rvm version
@@ -12,7 +12,7 @@ You will get the latest version of the rvm Ruby Version manager.
 
 rvm 1.29.12 (latest) by Michal Papis, Piotr Kuczynski, Wayne E. Seguin [https://rvm.io]
 
-2. Ruby
+### 2. Ruby
 
 ```shell
 ruby --version
@@ -21,7 +21,8 @@ you will get
 
 ruby 3.0.0p0 (2020-12-25 revision 95aff21468) [x86_64-linux]
 
-3.  PostgreSQL
+
+### 3.  PostgreSQL
 
 ```shell
 psql --version
@@ -203,6 +204,16 @@ gem 'rack-mini-profiler', '~> 2.0'
 #### database configuration 'config/database.yml'.
 
 
+
+#### install pry
+
+```shell
+sudo apt install pry
+```
+or 
+```shell
+gem  install pry
+```
 
 
 
