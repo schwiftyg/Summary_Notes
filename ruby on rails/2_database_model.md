@@ -3,9 +3,8 @@
 ## Generating a model   app/models
 
 to generate a model with Ruby on Rails run:
-```shell
-rails g model question title:string body:text
-```
+
+
 This generates a model called `question.rb` in the `app/models` folder and generates a migration in the `db/migrate` folder that creates the table in the database. To execute the migration run:
 
 ```shell
@@ -372,3 +371,11 @@ bundle
 end
 ```
 You can find more info on using `Faker` here: [https://github.com/stympy/faker](https://github.com/stympy/faker)
+
+# delete model 
+
+```shell
+rails d model question  
+```
+
+ 

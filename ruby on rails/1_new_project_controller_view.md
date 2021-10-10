@@ -189,3 +189,10 @@ class ApplicationController < ActionController::Base
 end
 ```
 In some cases we may need use another option for the `with` option such as `:null_session` which we will see when we cover building APIs with Rails. For now, It's highly recommend that you keep that line above and use `form_tag` or `form_for` when you want to generate a form.
+
+
+# delete controller 
+
+```shell 
+rails d controller welcome
+```
