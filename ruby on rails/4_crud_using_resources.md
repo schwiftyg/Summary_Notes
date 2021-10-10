@@ -3,8 +3,7 @@
 ## using  
 ```ruby
 # in config/routes.rb
-resources :questions do
-end
+resources :questions 
 ```
 ## instead of 
 
