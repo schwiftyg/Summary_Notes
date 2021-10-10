@@ -159,7 +159,7 @@ rails s
 
 Now open your web browser and type localhost with port '3000' on the address bar.
 
-```browser
+```sh
 http://localhost:3000/
 ```
 
@@ -176,7 +176,7 @@ rails s
 
 Now open your web browser and type localhost with port '3000' on the address bar.
 
-```browser
+```sh
 http://localhost:3000/posts
 ```
 ### configuration
@@ -184,7 +184,7 @@ http://localhost:3000/posts
 
 #### disable mini rack-mini-profiler gem
 
-```browser
+```sh
 http://localhost:3000/?pp=disable
 ```
 more about rack-mini-profiler gem  http://localhost:3000/?pp=help
@@ -200,9 +200,10 @@ gem 'rack-mini-profiler', '~> 2.0'
 
 
 
-
-
 #### database configuration 'config/database.yml'.
+
+
+
 
 
 
