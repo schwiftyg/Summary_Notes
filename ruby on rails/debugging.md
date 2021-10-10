@@ -28,15 +28,18 @@ byebug
 
 
 when run it, will stop this line in terminal
+
 ![Screenshot from 2021-10-10 14-35-40](https://user-images.githubusercontent.com/21187699/136713750-0dadce92-73e0-4556-87ed-25a0663a98d9.png)
 
 you could test the values
+
 ![Screenshot from 2021-10-10 14-36-22](https://user-images.githubusercontent.com/21187699/136713759-e5641e5b-0aeb-46f8-a2fc-3c364d041566.png)
 
 type continue and enter to run again
 ```ruby  
 continue
 ```
+
 ![Screenshot from 2021-10-10 14-36-33](https://user-images.githubusercontent.com/21187699/136713765-39a48043-9163-40d2-9fd0-6cf9bbb432a4.png)
 
 if don't want to run, just comment
