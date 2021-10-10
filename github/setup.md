@@ -75,3 +75,19 @@ Go to your Github's project and create a Pull Request of your <name-of-homework>
 Share the link of the Pull Request on this Google Submission form: https://docs.google.com/forms/d/1L6iHrX3IyjmaEYE7X0DVwJ5kCihqDXbY1_-XmUkzQ0g/edit
 
 Once your homework has been marked and approved, use the Merge Pull Request button at the bottom of the Pull Request page to merge your homework branch into master. And, delete the branch.
+
+
+
+### without asking password when push
+
+```shell
+gh auth login
+```
+
+When prompted for your preferred protocol for Git operations, select HTTPS.
+When asked if you would like to authenticate to Git with your GitHub credentials, enter Y.
+
+
+https://docs.github.com/en/get-started/getting-started-with-git/caching-your-github-credentials-in-git
+
+
