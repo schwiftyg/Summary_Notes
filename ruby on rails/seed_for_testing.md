@@ -1,4 +1,4 @@
-# Seed_fortesting
+# Seed_for_testing
 
 ## install faker and cowsay
 
