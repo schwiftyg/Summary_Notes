@@ -228,7 +228,7 @@ if make mistake, need delete controller
 rails d controller welcome
 ```  
 
-
+  
 ## error "Webpacker::Manifest::MissingEntryError in Home#home"
 
 ?? ruby version 3.0.0 not accept 
