@@ -95,7 +95,7 @@ you will get in terminal
 ![Screenshot from 2021-10-10 18-55-46](https://user-images.githubusercontent.com/21187699/136722693-013c8ad2-14bf-446a-bb39-ac185700a158.png)
 
 
-### create database connection file
+### create database connection file knexfile.js
 ```shell  
 knex init
 ```
@@ -121,6 +121,121 @@ knex_db=# \q
 the process look like this  
 
 ![Screenshot from 2021-10-10 19-06-08](https://user-images.githubusercontent.com/21187699/136723332-c317fd0d-63ea-40b2-8204-d868537ebf15.png)
+
+
+### edit database connection file  knexfile.js
+
+remove staging, producting part, just keep development part
+
+change  "client: 'sqlite3'," to 
+
+```node
+client: 'pg'
+```
+
+change connect to 
+```node
+ database: 'Super_Team_Picker',
+```
+
+for linux user, need add username and password
+```node
+username: harry
+password:12345678
+```
+
+add migrations and seeds part
+```node
+ migrations: {
+      directory: "./db/migrations"
+    },
+    seeds: {
+      directory: "./db/seeds"
+    }
+```
+
+final result like this: 
+```node 
+module.exports = {
+  development: {
+    client: 'pg',
+    connection: {
+      database: 'Super_Team_Picker',
+      username:'harry',
+      password:'12345678'
+    },
+    migrations: {
+      directory: "./db/migrations"
+    },
+    seeds: {
+      directory: "./db/seeds"
+    }
+  },
+};
+```
+
+![Screenshot from 2021-10-10 19-22-38](https://user-images.githubusercontent.com/21187699/136724461-62d83a3c-2852-4b99-a6c4-b4dec80dde46.png)
+
+
+### create migrations file for create tables 
+``` 
+knex migrate:make CreateCohorts
+```
+it will auto create folder "./db/migrations" and file "20211011023105_CreateCohorts.js"
+>filename could different have timestampe_part.
+
+like this 
+
+![Screenshot from 2021-10-10 19-33-10](https://user-images.githubusercontent.com/21187699/136725258-7b07ae87-ff35-445b-b382-3c14dddb1d91.png)
+
+
+### edit migration file for create tables 
+add create table in exports.up ,add drop table in exports.down
+final result like this
+```node
+exports.up = function(knex) {
+    return knex.schema.createTable('cohorts', table => {
+        table.bigIncrements('id');
+        table.string('members');
+        table.string('name');
+        table.text('logoUrl');
+        table.timestamp('createdAt').defaultTo(knex.fn.now());
+    });
+};
+
+exports.down = function(knex) {
+    return knex.schema.dropTable('cohorts');
+};
+```
+- bigIncrements is auto add integer number
+- string include charactor from 0-255
+- text include unlimited charactor
+- image just store image url instead of file
+- timestamp is store time stamp, using defaulf knex function  knex.fn.now()
+
+
+### run migration file 
+run in terminal, it mean run the latest migration file
+```shell
+knex migrate:latest
+```
+it will show  Batch 1 run: 1 migrations
+
+verify database
+
+```shell  
+psql -d Super_Team_Picker
+```
+in database terminal 
+
+```shell  
+knex_db=# \d
+```
+it will show database table files, like this
+
+![Screenshot from 2021-10-10 19-46-45](https://user-images.githubusercontent.com/21187699/136726239-9f0d14b0-96a1-4861-b4e9-e40f1a121356.png)
+
+
 
 ### edit package.json
 
