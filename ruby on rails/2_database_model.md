@@ -6,7 +6,7 @@ to generate a model with Ruby on Rails run:
 
 We will work with a `Question` model. Let's start by creating the model:
 ```shell
-rails g model question title body:text
+rails g model question title:string body:text
 ```
 
 
