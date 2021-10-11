@@ -37,14 +37,17 @@ click new
 
 
 click create repository
-![Screenshot from 2021-10-11 08-08-38](https://user-images.githubusercontent.com/21187699/136813743-2fff2595-590c-4eae-a63b-cfb5368d692f.png)
-)
 
+![Screenshot from 2021-10-11 08-08-38](https://user-images.githubusercontent.com/21187699/136814744-7685c82f-b6c6-4d2b-afe1-b24bf8bdf3e6.png)
+
+click code, copy Https 
+
+![Screenshot from 2021-10-11 08-12-51](https://user-images.githubusercontent.com/21187699/136814541-628c5be8-0e09-46fa-8535-4a4974e1ec1a.png)
 
 
 ### add your remote repository 
 ```sh
-git remote add origin https://github.com/harryji168/Quiz.git
+git remote add origin https://github.com/harryji168/amazing_amazon.git
 ```
 
 ### force push the project
