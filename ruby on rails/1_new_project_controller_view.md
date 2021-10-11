@@ -19,6 +19,18 @@ Bundler defines the gems needed in a file that comes with Rails which is called 
 Please note that most gems built with Ruby follow Semantic Versioning. You can read up more about it here: http://semver.org/. In brief, gem versions look like three numbers separated by a dot which depict the following `MAJOR.MINOR.PATCH`. This is why having a feature like `~>` is useful because in many cases we can accept any changes in the `PATCH` number but not with the `MAJOR` and `MINOR`.
 
 After defining the gems you want to use, you will need to run:
+
+remove 
+```
+gem 'rack-mini-profiler', '~> 2.0'
+```
+
+add 
+```
+  gem 'cowsay', '~> 0.3.0'
+  gem 'faker'
+  gem 'bootstrap', '~> 5.1'
+```  
  
 ```shell
 bundle
@@ -215,3 +227,13 @@ if make mistake, need delete controller
 ```shell 
 rails d controller welcome
 ```
+
+
+## error "Webpacker::Manifest::MissingEntryError in Home#home"
+
+?? ruby version 3.0.0 not accept 
+in `app\views\layouts\application.html.erb` 
+comment 
+```ruby
+ <%# javascript_pack_tag 'application' %>
+ ```
