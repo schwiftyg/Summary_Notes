@@ -353,7 +353,7 @@ look like this
 
 
 
-### try test project
+## try test project
 Now the project construe is setup, you run the server for test 
 
 in terminal
@@ -376,4 +376,118 @@ like this, so we could add webpage now.
 
 ![Screenshot from 2021-10-10 20-31-55](https://user-images.githubusercontent.com/21187699/136729434-3fa0276b-295e-4a20-8c6b-eff5e6e0176a.png)
 
+use Ctrl+C stop server now 
 
+### setup views struction
+
+create views folder
+```node 
+mkdir views
+```
+
+create partials folder
+```node 
+mkdir views/partials
+```
+
+### create header file  `header.ejs`
+
+```node 
+code views/partials/header.ejs
+```
+add code
+```
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title><%= pageTitle%> - [Homework 4]Super Team Picker</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css"> 
+  </head>
+  <body class="mx-4 my-3">
+    <div class="d-flex flex-row justify-content-between">
+        <h5 class="text-primary align-self-center">Team Picker</h5>
+        <ul class="nav justify-content-end">
+            <li class="nav-item">
+                <a class="nav-link" href="/">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/cohorts">Cohorts</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/cohorts/new">New Cohort</a>
+            </li>
+        </ul>
+    </div> 
+
+<div class="container">
+```
+look like
+![Screenshot from 2021-10-10 20-40-37](https://user-images.githubusercontent.com/21187699/136730022-465d1065-3086-4c70-b2d2-f2b413c80f04.png)
+
+
+
+### create footer file  `footer.ejs`
+
+```node 
+code views/partials/footer.ejs
+```
+
+add code
+```
+</div>
+</body>
+</html> 
+```
+like this
+
+![Screenshot from 2021-10-10 20-43-31](https://user-images.githubusercontent.com/21187699/136730226-c9c82a1e-42a4-436a-be1e-acb54d356740.png)
+
+### create home page  `home.ejs`
+
+```node 
+code views/home.ejs
+```
+
+add code
+```
+<%- include('./partials/header') %>
+<p> 
+<h1>Welcome to Super Team Picker</h1>
+<p>
+<p>Team Picker is old and is in need of a rebuild. Create an Express app with Postgres to store cohorts. Cohorts will have a list of members stored as comma separated names. They'll also have a name and a logo.
+<p>
+    When visiting a cohort's show page, you will be able to generate teams for that cohort. Below are mockups of every page that you need to build for the application. Use Bootstrap to build it. Try to match the mockups as accurately as possible.</p>
+
+<p>
+    <a href="/cohorts/new" class="btn btn-primary text-primary bg-light">Creating New Cohorts</a>
+
+    <a href="/cohorts/" class="btn btn-primary text-primary bg-light">Index to List Cohorts</a>
+    
+<%- include('./partials/footer') %>
+```
+
+like this
+
+![Screenshot from 2021-10-10 20-49-18](https://user-images.githubusercontent.com/21187699/136730650-8185ef45-f9dd-406b-8602-578c0049a9fe.png)
+
+
+
+## test project agian
+Now the project construe is setup, you run the server for test 
+
+in terminal
+```node 
+npm start
+```
+teminal will show npm start
+
+open browser
+
+```sh
+http://localhost:5000/
+```
+
+now it will show  content like this:
+
+![Screenshot from 2021-10-10 20-51-15](https://user-images.githubusercontent.com/21187699/136730803-025debd8-b969-4b6b-97e5-2837759de9a2.png)
