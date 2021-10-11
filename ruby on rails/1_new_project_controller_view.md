@@ -226,7 +226,7 @@ http://localhost:3000/
 if make mistake, need delete controller
 ```shell 
 rails d controller welcome
-```
+```  
 
 
 ## error "Webpacker::Manifest::MissingEntryError in Home#home"
