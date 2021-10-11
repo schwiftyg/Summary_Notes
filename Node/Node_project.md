@@ -473,7 +473,7 @@ like this
 
 
 
-## test project agian
+## test project again
 Now the project construe is setup, you run the server for test 
 
 in terminal
@@ -491,3 +491,57 @@ http://localhost:5000/
 now it will show  content like this:
 
 ![Screenshot from 2021-10-10 20-51-15](https://user-images.githubusercontent.com/21187699/136730803-025debd8-b969-4b6b-97e5-2837759de9a2.png)
+
+use Ctrl+C stop server now 
+
+## add stylesheet to beatiful page 
+
+
+### setup folder
+
+create public folder
+```sh
+mkdir public
+```
+
+create css folder
+```sh
+mkdir public/css
+```
+
+### get bootstrap css file
+
+```sh
+curl https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css > public/css/bootstrap.min.css
+``` 
+![Screenshot from 2021-10-10 21-02-12](https://user-images.githubusercontent.com/21187699/136731553-0b08068b-2fec-42ab-8940-5003fac75b2c.png)
+
+click file like:
+
+![Screenshot from 2021-10-10 21-03-07](https://user-images.githubusercontent.com/21187699/136731607-edd12be5-f07a-42df-863b-cea1fac9cd3d.png)
+
+
+
+## test project again
+Now you could run the server again  
+
+in terminal
+```node 
+npm start
+```
+teminal will show npm start
+
+open browser
+
+```sh
+http://localhost:5000/
+```
+
+now it will show  content like this: it much better than before
+
+![Screenshot from 2021-10-10 21-06-34](https://user-images.githubusercontent.com/21187699/136731854-415b37fb-34e0-4a4e-9019-f19e2524a863.png)
+
+
+use Ctrl+C stop server now 
+
+## add New feathure 
