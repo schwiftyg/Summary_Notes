@@ -235,14 +235,145 @@ it will show database table files, like this
 
 ![Screenshot from 2021-10-10 19-46-45](https://user-images.githubusercontent.com/21187699/136726239-9f0d14b0-96a1-4861-b4e9-e40f1a121356.png)
 
+```shell 
+knex_db=# \d knex_migrations  
+```
+![Screenshot from 2021-10-10 19-52-05](https://user-images.githubusercontent.com/21187699/136726636-64bf4dcf-dd9c-4c7f-90e6-7b199c4c700e.png)
+
+```shell 
+knex_db=# \d cohorts
+```
+![Screenshot from 2021-10-10 19-53-38](https://user-images.githubusercontent.com/21187699/136726753-9af7c014-7fcc-40f5-8307-f27780f06ab6.png)
+
+
+exit database terminal
+```shell  
+knex_db=# \q
+```
+
+### create client.js under db for connection
+
+```node
+const knex = require('knex');
+const dbConfig = require('../knexfile');
+
+const client = knex(dbConfig.development);
+module.exports = client;
+```
+> it is in db folder, not in db/migrations folder
+
+like this 
+
+![Screenshot from 2021-10-10 19-58-53](https://user-images.githubusercontent.com/21187699/136727358-a4721ee8-457f-4f36-b703-c314aac8e072.png)
+
+
+
+
 
 
 ### edit package.json
 
-add "start": "nodemon" under scripts
-
-``` 
+add "start": "nodemon" under scripts add 
+```   
+    ,
  "start": "nodemon",
 ```
+
+look like this 
+
+![Screenshot from 2021-10-10 20-10-07](https://user-images.githubusercontent.com/21187699/136728112-6bce1e43-b90b-4b96-86d3-873e982a3f27.png)
+
+### add routes file under routes folder
+
+create routes folder
+```shell
+mkdir routes
+```
+add routes file call `cohorts.js`  
+>could use project name as main route
+
+```shell
+code routes/cohorts.js
+```
+input code 
+
+```shell
+const express = require('express');
+const knex = require('../db/client');
+const router = express.Router();
+
+
+
+module.exports = router;
+```
+
+![Screenshot from 2021-10-10 20-22-49](https://user-images.githubusercontent.com/21187699/136728866-e982d8a3-d5e2-4eee-a781-32341219e286.png)
+
+
+### add index.js to top 
+
+```node 
+const express = require('express');
+const logger = require('morgan');
+const app = express();
+const path = require('path');
+const cohortsRouter = require('./routes/cohorts');
+const methodOverride = require('method-override');
+
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.urlencoded({
+    extended: true
+}));
+app.use(methodOverride((req, res) => {
+    if (req.body && req.body._method) {
+        const method = req.body._method
+        return method;
+    }
+}));
+
+app.use(logger('dev'));
+app.set('view engine', 'ejs');
+app.use("/cohorts", cohortsRouter);
+
+app.get('/', function (request, response) {   
+    response.render('home', { pageTitle: "Super Team Picker Home" } );
+});
+
+
+const PORT = 5000;
+const ADDRESS = '127.0.0.1';
+
+app.listen(PORT, ADDRESS, () => {
+    console.log(`EXPRESS server listening on ${ADDRESS}:${PORT}`);
+});
+```
+look like this
+
+![Screenshot from 2021-10-10 20-25-20](https://user-images.githubusercontent.com/21187699/136729007-59afdc75-e75d-4d20-a13b-70b966979c4e.png)
+
+
+
+### try test project
+Now the project construe is setup, you run the server for test 
+
+in terminal
+```node 
+npm start
+```
+
+teminal will show npm start
+
+![Screenshot from 2021-10-10 20-28-45](https://user-images.githubusercontent.com/21187699/136729205-2c0b3e44-a1fe-43c3-8a5d-c64b2e559947.png)
+
+open browser
+
+```sh
+http://localhost:5000/
+```
+
+it will show "Error: Failed to lookup view "home" in views directory"
+like this, so we could add webpage now.
+
+![Screenshot from 2021-10-10 20-31-55](https://user-images.githubusercontent.com/21187699/136729434-3fa0276b-295e-4a20-8c6b-eff5e6e0176a.png)
 
 
