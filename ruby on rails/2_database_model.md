@@ -4,6 +4,11 @@
 
 to generate a model with Ruby on Rails run:
 
+We will work with a `Question` model. Let's start by creating the model:
+```shell
+rails g model question title body:text
+```
+
 
 This generates a model called `question.rb` in the `app/models` folder and generates a migration in the `db/migrate` folder that creates the table in the database. To execute the migration run:
 
