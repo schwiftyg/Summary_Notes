@@ -473,7 +473,7 @@ like this
 
 
 
-## test project again
+# test project again
 Now the project construe is setup, you run the server for test 
 
 in terminal
@@ -514,6 +514,8 @@ mkdir public/css
 ```sh
 curl https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css > public/css/bootstrap.min.css
 ``` 
+terminal like 
+
 ![Screenshot from 2021-10-10 21-02-12](https://user-images.githubusercontent.com/21187699/136731553-0b08068b-2fec-42ab-8940-5003fac75b2c.png)
 
 click file like:
@@ -522,7 +524,7 @@ click file like:
 
 
 
-## test project again
+# test project again
 Now you could run the server again  
 
 in terminal
@@ -544,4 +546,442 @@ now it will show  content like this: it much better than before
 
 use Ctrl+C stop server now 
 
-## add New feathure 
+## Add feathures 
+
+modify `routes/cohorts.js` file 
+after const line, add 
+
+```node
+function shuffle(array) {
+    for (var i = array.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+}
+
+router.get('/', (req, res) => {
+    knex("cohorts")
+    .select("*")
+    .orderBy("id", "asc")
+    .then((data) => {
+        res.render("cohorts/index", {
+            pageTitle: "Team List",
+            cohorts: data,
+        });
+    });
+});
+
+router.get('/new', (req, res) => {
+    res.render("cohorts/edit", {
+        pageTitle: "New Team Picker",
+        cohort: null
+    });
+});
+
+router.post('/', (req, res) => {
+    const cohortParmas = {
+        members: req.body.members,
+        name: req.body.name,
+        logoUrl: req.body.logoUrl
+    };
+    knex("cohorts").insert(cohortParmas).returning("id").then(data => {
+        res.redirect(`/cohorts/${data[0]}`);
+    })
+});
+ 
+
+router.get('/:id', (req, res) => {
+    if(isNaN(parseInt(req.params.id))){
+        res.render('cohorts/show',{cohort:false,pageTitle: "Not Found - Super Team Picker"});
+    }else{     
+        knex("cohorts")
+            .select("*")
+            .where({
+                id: req.params.id
+            })
+            .then(data => {
+                if(data===undefined){
+                    res.render('cohorts/show',{cohort:false,pageTitle: "Not Found - Super Team Picker"})
+                }else{
+                    let memberList = null;
+                    let isTeamCount = 'checked';
+                    let isMemberCount = null;                
+                    let members = data[0].members.split(',');
+                    let inputNumb = null;                         
+                    if (req.query.method && req.query.quantity) {
+                        shuffle(members);
+                        memberList = [];                    
+                        let teamCout, memberCout;
+                        inputNumb = parseInt(req.query.quantity);                    
+                        if(isNaN(inputNumb)){inputNumb=1};
+                        if(inputNumb<1){inputNumb=1};                    
+                        if (req.query.method == 'perTeam') {
+                            isTeamCount = null;
+                            isMemberCount = 'checked';
+                            memberCout = inputNumb;  
+                            chunk= inputNumb;                                               
+                        } else {
+                            teamCout = inputNumb; 
+                            chunk= Math.ceil(members.length/inputNumb);                                               
+                        }
+                        console.log(chunk);
+                        var i,j;
+                        for(j=0;j<chunk;j++){
+                            memberList[j] =[];
+                        }
+                        for (i=0,j=0; i < members.length; i++) {                                                  
+                            memberList[j++].push(members[i]);                                                  
+                            if(j>=chunk){      
+                                j=0;
+                            }                                              
+                        }              
+                    } 
+                    res.render("cohorts/show", {
+                        pageTitle: "Team " + data[0].name,
+                        cohort: data[0],
+                        num_of_member:members.length,
+                        memberList: memberList,
+                        isTeamCount: isTeamCount,
+                        isMemberCount: isMemberCount,
+                        quantity: inputNumb
+                    });
+                }
+            });
+        
+    }
+});
+
+router.get('/:id/edit', (req, res) => {
+    knex("cohorts")
+        .select("*")
+        .where({
+            id: req.params.id
+        })
+        .then((data) => {
+            res.render('cohorts/edit', {
+                pageTitle: "Super Team Picker",
+                cohort: data[0]
+            });
+        });
+});
+
+router.patch('/:id', (req, res) => {
+    const cohortParmas = {
+        members: req.body.members,
+        name: req.body.name,
+        logoUrl: req.body.logoUrl
+    };
+    knex("cohorts")
+        .where({
+            id: req.params.id
+        })
+        .update(cohortParmas).returning("*")
+        .then(data => { 
+            res.render("cohorts/show", {
+                pageTitle: "Team Picker",
+                cohort: data[0],
+                num_of_member:data[0].members.split(',').length,
+                memberList: null,
+                isTeamCount: null,
+                isMemberCount: null,
+                quantity: null
+            });
+        });
+});
+
+router.delete('/:id', (req, res) => {
+    knex("cohorts")
+        .where({
+            id: req.params.id
+        })
+        .delete()
+        .then((data) => {
+            res.redirect("/cohorts");
+        });
+});
+
+```
+
+look like this 
+
+![Screenshot from 2021-10-10 21-23-00](https://user-images.githubusercontent.com/21187699/136732967-66c839ae-2b29-4c2a-aa77-0176f8ce8c4f.png)
+
+
+### add webpage file
+
+create `views/cohorts` folder
+```sh
+mkdir views/cohorts
+```
+
+### create edit.ejs under `views/cohorts`
+
+```sh
+code views/cohorts/edit.ejs
+```
+
+add code 
+```ejs
+<%- include("../partials/header.ejs")%> 
+<% if(cohort){%> 
+    <form action="/cohorts/<%= cohort.id%>" method="POST" class="my-3 d-flex flex-column">
+        <img src="<%= cohort.logoUrl%>"  loading=lazy class="rounded-circle" width="40px" height="40px" alt="">
+        <%- include("../partials/forminput")%>
+        <div class="d-flex justify-content-end">
+            <input type="hidden" name="_method" value="PATCH">
+            <input type="submit" class="btn btn-outline-primary justify-content-end" value="Update">
+        </div>        
+    </form>
+<%} else{%>
+    <form action="/cohorts" method="POST" class="my-2 d-flex flex-column">
+        <%- include("../partials/forminput")%>
+        <div class="d-flex justify-content-end">
+            <input type="submit" class="btn btn-outline-primary justify-content-end" value="Insert">
+        </div>        
+    </form>
+<%}%>
+<%- include("../partials/footer.ejs")%>
+```
+like this 
+
+![Screenshot from 2021-10-10 21-27-38](https://user-images.githubusercontent.com/21187699/136733305-26532f96-8c29-4c64-94ac-27d127b2b376.png)
+
+
+
+### create index.ejs under `views/cohorts`
+
+```sh
+code views/cohorts/index.ejs
+```
+
+add code 
+```ejs
+<%- include("../partials/header.ejs")%> 
+<% for(let cohort of cohorts){%>
+    <div class="card my-3" style="width: 100%;">
+        <div class="card-body">
+            <div class="d-flex flex-row">
+                <img src="<%= cohort.logoUrl%>"  loading=lazy class="rounded-circle" width="60px" height="60px" alt="">
+                <h4 class="card-title mx-2 my-2"><%= cohort.name%></h4>
+            </div>
+            <p class="card-text"><%= cohort.members%></p>
+            <a href="/cohorts/<%= cohort.id%>" class="btn btn-primary">Show cohort</a>
+        </div>
+    </div>
+<%}%>
+<%- include("../partials/footer.ejs")%>
+```
+like this 
+
+![Screenshot from 2021-10-10 21-30-03](https://user-images.githubusercontent.com/21187699/136733450-a5a77ba3-f94b-40af-a6c6-9b0d368d5c55.png)
+
+
+### create show.ejs under `views/cohorts`
+```sh
+code views/cohorts/show.ejs
+```
+
+add code 
+```ejs
+
+<%- include("../partials/header.ejs")%> 
+<div class="card my-3" style="width: 100%;">
+    <%if(!cohort){%>        
+        <h4 class="mt-4 text-center">Cohort Not Found. Please create a new cohort</h4>     
+        <p>
+        <a href="/cohorts/new" class="btn btn-primary text-primary bg-light col-12 mt-4">Creating New Cohorts</a>
+    <%} else{%>    
+        <div class="card-body">
+        <div class="add-items d-flex justify-content-between">
+            <h1><%=cohort.name%></h1>
+            <div class="align-items-end d-flex align">
+                <img src="<%= cohort.logoUrl%>"  loading=lazy class="rounded-circle m-1" width="60px" height="60px" alt="<%= cohort.name%>">
+                <a href="/cohorts/<%= cohort.id %>/edit" class="btn btn-outline-success btn-block my-1">Edit</a>
+                <form action="/cohorts/<%= cohort.id %>" class="m-1" method="POST">
+                    <input type="hidden" value="DELETE" name="_method">
+                    <input type="submit" value="Delete" class="btn btn-outline-danger btn-block">
+                </form>
+            </div>
+        </div>        
+            <p class="card-text"><%= cohort.members%></p>
+            <hr>
+            <form action="/cohorts/<%= cohort.id%>" method="GET">
+            <div class="mb-3">
+                    <h6 class="card-title">Method</h6>
+                    <div class="form-check my-2">
+                        <input class="form-check-input" type="radio" name="method" value="teamCount" <%=isTeamCount%>>
+                        <label class="form-check-label" for="method">
+                            Team Count
+                        </label>
+                        </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="method" value="perTeam" <%=isMemberCount%>>
+                        <label class="form-check-label" for="method">
+                            Number Per Team
+                        </label>
+                    </div>
+            </div>   
+            <div class="form-group mb-3">
+                <h5 for="quantity">Quantity</h5>
+                <input type="text" class="form-control" autofocus value="<%=quantity%>" name="quantity" min="1" max="<%= num_of_member%>">                         
+                <input type="submit" class="btn btn-primary text-primary bg-light col-12 mt-4" value="Assign Teams">
+            </form>
+            <% if(memberList){%>
+                <div class="my-3">
+                    <h6>#&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Members</h6>
+                    <hr>
+                    <% memberList.forEach((element, index) => {%>
+                        <p><strong><%= index+1%></strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= element%></p>
+                        <hr>
+                    <%})%>
+                </div>
+            <%}%>            
+        </div>
+    <%}%>
+</div>
+<%- include("../partials/footer.ejs")%>
+```
+
+like this
+
+![Screenshot from 2021-10-10 21-31-52](https://user-images.githubusercontent.com/21187699/136733589-30319383-86de-4713-aaed-2d4974292603.png)
+
+
+### create a share forminput.ejs under `views/partials`
+```sh
+code views/partials/forminput.ejs
+```
+
+add code 
+```ejs
+<div class="form-group mb-3">
+    <label for="logo" class="form-label">Logo Url</label>
+    <input type="url" class="form-control" name="logoUrl" id="logoUrl" placeholder="e.g.https://www.example.com/some.png"
+    value='<%=cohort?cohort.logoUrl:""%>'>
+  </div>
+  <div class="form-group mb-3">
+      <label for="name" class="form-label">Name</label>
+      <input type="text" class="form-control" name="name" id="name" placeholder="Flying Funks" required
+      value='<%=cohort?cohort.name:""%>'>
+    </div>
+  <div class="form-group mb-3">
+    <label for="members" class="form-label">Members</label>
+    <textarea class="form-control" id="members" name="members" rows="3" placeholder="Jon Snow,Daenerys,Melisandre,Arya Stark" required><%=cohort?cohort.members:""%></textarea>
+  </div>
+```
+
+
+# test project again
+Now you could run the server again  
+
+in terminal
+```node 
+npm start
+```
+teminal will show npm start
+
+open browser
+
+```sh
+http://localhost:5000/
+```
+
+click new like this 
+
+![Screenshot from 2021-10-10 21-36-34](https://user-images.githubusercontent.com/21187699/136733961-48dad0b1-8ed5-46a2-823c-ab5aa4f62a69.png)
+
+use Ctrl+C stop server now 
+
+
+
+## import seed demo data
+
+create seeds file under  `db/seeds`
+
+```sh
+code db/seeds/input_demo_data.js
+```
+
+add code 
+
+```sh
+const { fake } = require("faker");
+const faker = require("faker")
+exports.seed = function(knex) {
+  // Deletes ALL existing entries
+  return knex('cohorts').del()
+    .then(function () {
+      // Inserts seed entries
+      const cohorts=[];
+        
+      for (let i = 0; i < 30; i++) {
+        members_string=faker.name.firstName();
+        for(let j = 0; j < Math.floor((Math.random() * 60) + 10); j++) {
+             members_string = members_string+","+ faker.name.firstName();
+         } 
+        cohorts.push(
+          { 
+            name: faker.company.companyName(), 
+            members: members_string, 
+            logoUrl: faker.image.imageUrl(),
+          },
+        )
+      };
+      return knex('cohorts').insert(cohorts);
+    });
+};
+```
+### run seed file
+
+```sh
+knex seed:run
+```
+termianl like
+
+![Screenshot from 2021-10-10 21-45-47](https://user-images.githubusercontent.com/21187699/136734555-37aafb54-d15d-4570-b73b-d1ed5506c94e.png)
+
+
+
+# test project again
+Now you could run the server again  
+
+in terminal
+```node 
+npm start
+```
+teminal will show npm start
+
+open browser
+
+```sh
+http://localhost:5000/
+```
+
+click Cohorts like this 
+![Screenshot from 2021-10-10 21-49-19](https://user-images.githubusercontent.com/21187699/136734816-50dc3a6a-f776-4eaf-9809-4d17e17526c8.png)
+
+click show Cohort like this
+![Screenshot from 2021-10-10 21-50-54](https://user-images.githubusercontent.com/21187699/136734901-dc136663-4311-4179-84b5-8253ddfec187.png)
+
+input Quanitiy click Assign Teams, like this
+![Screenshot from 2021-10-10 21-52-34](https://user-images.githubusercontent.com/21187699/136735008-4ea4c8dc-8641-4350-a587-2fc68539ef55.png)
+
+choose Number Per Team
+![Screenshot from 2021-10-10 21-54-34](https://user-images.githubusercontent.com/21187699/136735216-a0c82010-b366-4b16-b0ed-0a4466094081.png)
+
+
+click Edit button
+![Screenshot from 2021-10-10 21-56-03](https://user-images.githubusercontent.com/21187699/136735280-204772e8-8fa4-46c7-9b4c-c73b66fb8d49.png)
+
+click delete button
+will delete current Cohort, back to list
+
+![Screenshot from 2021-10-10 21-58-02](https://user-images.githubusercontent.com/21187699/136735434-3fef3298-fd9b-4a3f-9d02-dd637049ad7d.png)
+
+use Ctrl+C stop server now 
+
+## improve image
+
+current problem is that Faker image  is image folder, every time refresh, the image will change, so will use unslpash image insteady of Faker Image
