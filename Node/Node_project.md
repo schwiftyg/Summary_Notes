@@ -81,11 +81,10 @@ click this file, you will get
 
 ![Screenshot from 2021-10-10 18-46-54](https://user-images.githubusercontent.com/21187699/136722044-c065ba7c-daf3-4ee6-ac3f-f12cc9586a23.png)
 
->.gitignore file just let different system ignore the incompatible file in this project
+>.gitignore file just let different system ignore the incompatible files in this project
 
 
-### create database for this project
-run 
+### create a database for this project
 
 ```shell  
 createdb --echo Super_Team_Picker
@@ -95,6 +94,33 @@ you will get in terminal
 
 ![Screenshot from 2021-10-10 18-55-46](https://user-images.githubusercontent.com/21187699/136722693-013c8ad2-14bf-446a-bb39-ac185700a158.png)
 
+
+### create database connection file
+```shell  
+knex init
+```
+you will get in terminal 
+![Screenshot from 2021-10-10 19-02-08](https://user-images.githubusercontent.com/21187699/136723077-f6dd3722-cc06-4e8b-abd8-55bd836cbc41.png)
+
+
+verify database, enter database terminal
+```shell  
+psql -d Super_Team_Picker
+```
+in database terminal 
+
+```shell  
+knex_db=# \d
+```
+show Did not find any relations.
+
+exit database terminal
+```shell  
+knex_db=# \q
+```
+the process look like this  
+
+![Screenshot from 2021-10-10 19-06-08](https://user-images.githubusercontent.com/21187699/136723332-c317fd0d-63ea-40b2-8204-d868537ebf15.png)
 
 ### edit package.json
 
