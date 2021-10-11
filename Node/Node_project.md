@@ -213,6 +213,10 @@ exports.down = function(knex) {
 - image just store image url instead of file
 - timestamp is store time stamp, using defaulf knex function  knex.fn.now()
 
+like this 
+
+![Screenshot from 2021-10-11 07-08-08](https://user-images.githubusercontent.com/21187699/136804632-be99bebd-efa7-4bf9-b300-daf47359385e.png)
+
 
 ### run migration file 
 run in terminal, it mean run the latest migration file
