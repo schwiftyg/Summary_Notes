@@ -28,31 +28,31 @@ No submission
 ## Part 2: Features
 Was everything in assignment attempted?
 
-Feature	Mark	Notes
-Express Project Setup	✅	
-The new page should be accessible from a link in the navbar	✅	
-The new page should show a form with all the fields necessary to create a cohort	✅	
-Submitting the form should store the cohort's logo image if there is one, then it should save the cohort's members, name and logoUrl to the cohorts table.	✅	
-It should redirect the user to the newly created cohort's show page.	✅	
-The Cohort page should list all cohorts with their name, members and a thumbnail of their logo.	✅	
-Each listed cohort should have a "Show Cohort" button that links to that cohort's show page.	✅	
-Showing a Single Cohort should show the cohort's name and members.	✅	
-The Show page should have a form to select the options for generating teams.	✅	
-Submitting the form should randomly generate a team according to the given options and display the team members with their numbers in a table below the form without redirecting the user to another page.	❌	Assigning members doesn't work correctly. Partial mark assigned.
-The form should save its values even after it's been submitted.	✅	
-Add a button on the cohort's show page to delete a cohort.	✅	
-Add a button on a cohort's show page to edit a cohort.	✅	
-The edit button should send the user to the edit form where they can change the team members, team name, etc.	✅	
+- Feature	Mark	Notes
+- Express Project Setup	✅	
+- The new page should be accessible from a link in the navbar	✅	
+- The new page should show a form with all the fields necessary to create a cohort	✅	
+- Submitting the form should store the cohort's logo image if there is one, then it should save - the cohort's members, name and logoUrl to the cohorts table.	✅	
+- It should redirect the user to the newly created cohort's show page.	✅	
+- The Cohort page should list all cohorts with their name, members and a thumbnail of their logo.	✅	
+- Each listed cohort should have a "Show Cohort" button that links to that cohort's show page.	✅	
+- Showing a Single Cohort should show the cohort's name and members.	✅	
+- The Show page should have a form to select the options for generating teams.	✅	
+- Submitting the form should randomly generate a team according to the given options and display the team members with their numbers in a table below the form without redirecting the user to another page.	❌	Assigning members doesn't work correctly. Partial mark assigned.
+- The form should save its values even after it's been submitted.	✅	
+- Add a button on the cohort's show page to delete a cohort.	✅	
+- Add a button on a cohort's show page to edit a cohort.	✅	
+- The edit button should send the user to the edit form where they can change the team members, team name, etc.	✅	
 
 
 ## Part 3: Styling and overall Impression
 Was Bootstrap installed and was attempts made to look like the mockups?
 
-Feature	Mark	Notes
-Bootstrap installed and styling close or very close to mockups.	✅	
-Bootstrap installed and styling somewhat attempted to look like mockups or presentable.		
-Bootstrap installed but no attempt for styling to look like mockups.		
-No Bootstrap installed.		
+- Feature	Mark	Notes
+- Bootstrap installed and styling close or very close to mockups.	✅	
+- Bootstrap installed and styling somewhat attempted to look like mockups or presentable.		
+- Bootstrap installed but no attempt for styling to look like mockups.		
+- No Bootstrap installed.		
 
 
 
