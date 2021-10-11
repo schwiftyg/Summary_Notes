@@ -985,3 +985,161 @@ use Ctrl+C stop server now
 ## improve image
 
 current problem is that Faker image  is image folder, every time refresh, the image will change, so will use unslpash image insteady of Faker Image
+
+### create demo.ejs under    `db/seeds`
+
+
+```sh
+code db/seeds/demo.ejs
+```
+
+add code 
+
+```sh
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js" integrity="sha256-S1J4GVHHDMiirir9qsXWc8ZWw74PHHafpsHp5PXtjTs=" crossorigin="anonymous"></script>
+    <title>get demo image url</title>
+</head>
+<body>
+    <h1>get demo image url for id: <%= id%> </h1>
+    <form name="myForm" id="myForm" target="_myFrame" action="/cohorts/input_demo_image/<%= id%>" method="POST">
+        <input type="hidden" name="_method" value="PATCH">       
+        <p>
+            <input name="imgurl" id="imgurl" value="loading" />
+        </p>
+        <p>
+            <input type="submit" value="Submit" />
+        </p>
+    </form> 
+    <script>        
+        let randomURL = 'https://source.unsplash.com/random/400x300';
+        axios.get(randomURL).then( data => {
+            // the url of the random img
+            console.log(data.request.responseURL);   
+            document.getElementById("imgurl").value =data.request.responseURL;
+            setTimeout(submit,1000);
+             
+        });
+        function submit(){
+            document.forms["myForm"].submit();      
+        }
+    </script>    
+</body>
+</html>
+```
+look like
+![Screenshot from 2021-10-10 22-05-21](https://user-images.githubusercontent.com/21187699/136736043-38ec0893-4985-4822-82da-ab52dd314143.png)
+
+
+### modify `routes/cohorts.js`
+
+add before "module.exports = router;" code 
+
+```node 
+// replace faker demo image with  unsplash
+router.get('/demo/:id', function (req, res) { 
+    if(req.params.id==0){        
+        knex("cohorts")
+        .min('id')     
+        .then(data => {
+            //console.log(data[0]);
+            res.render('../db/seeds/demo',{ id: data[0]['min'] } );
+        })
+    }else{
+          res.render('../db/seeds/demo',{ id:  req.params.id } );
+    }     
+});
+
+router.patch('/input_demo_image/:id', (req, res) => {   
+    //console.log(req.body);
+    //console.log(req.params);
+    knex("cohorts")
+    .where("id", req.params.id)
+    .update(      
+        {  
+            logoUrl: req.body.imgurl
+        }    
+    ).then(() => {
+        knex("cohorts")
+        .max('id')     
+        .then(data => {
+            next_id = parseInt(req.params.id)+1;
+            console.log(next_id);
+            if(next_id>data[0]['max']){ 
+                res.redirect("/cohorts");
+            }else{                
+                res.redirect(`/cohorts/demo/${next_id}`);                
+            }
+        })
+    })        
+});
+```
+look like 
+![Screenshot from 2021-10-10 22-26-05](https://user-images.githubusercontent.com/21187699/136737599-3c39d95e-9276-4616-a4fb-eed7d5efcd21.png)
+
+
+### run get demo image
+in terminal
+```node 
+npm start
+```
+teminal will show npm start
+
+open browser
+```sh 
+http://localhost:5000/cohorts/demo/0
+```
+
+now the web will refresh afer loading page until finish, like this 
+![Screenshot from 2021-10-10 22-22-14](https://user-images.githubusercontent.com/21187699/136737838-7a9ae3e5-ea7e-49ca-bb90-0a1c8f4e86b7.png)
+
+
+after iput images,the image will still, and different for each cohort
+
+![Screenshot from 2021-10-10 22-23-50](https://user-images.githubusercontent.com/21187699/136737954-6f9cb7d0-7879-4421-92fe-421ed8650fd8.png)
+
+edit page, logo will keep same, like this
+
+![Screenshot from 2021-10-10 22-31-54](https://user-images.githubusercontent.com/21187699/136738070-4233ecae-718d-4f56-b314-2dbc0381375e.png)
+
+
+use Ctrl+C stop server now 
+
+## backup database 
+```sh 
+pg_dump -U harry -F c -b -v -f "db/seeds/demo_data_backup" Super_Team_Picker
+```
+like this
+![Screenshot from 2021-10-10 22-40-06](https://user-images.githubusercontent.com/21187699/136738713-7cb8b98e-8730-40b4-84b8-3a5294163323.png)
+
+## restore database
+```sh 
+pg_restore -U harry -f Super_Team_Picker -v "db/seeds/demo_data_backup"
+```
+like this
+![Screenshot from 2021-10-10 22-40-58](https://user-images.githubusercontent.com/21187699/136738774-0d2377a3-9f51-4028-bdfb-17501a5e0ebf.png)
+
+## add more parament for npm
+modify `package.json`
+
+```node 
+    "init":"npm init",
+    "install": "npm i ejs express knex method-override pg",
+    "install-d": "npm i -D concurrently faker http-server morgan nodemon",
+    "dbcreate": "createdb --echo super_team_picker",
+    "migrate_create": "knex migrate:make super_team_picker",
+    "migrate": "knex migrate:latest",
+    "seed_create": "knex seed:make super_team_picker",
+    "seed": "knex seed:run",
+    "demo_image": "concurrently \"npm start\" \"xdg-open http://localhost:5000/cohorts/demo/0 \"",
+    "backup":"pg_dump -U harry -F c -b -v -f \"db/seeds/demo_data_backup\" Super_Team_Picker",
+    "restore":"pg_restore -U harry -f Super_Team_Picker -v \"db/seeds/demo_data_backup\""
+ ```   
+
+![Screenshot from 2021-10-10 22-43-12](https://user-images.githubusercontent.com/21187699/136738948-95661452-b67d-4f2c-ae62-107ac6125157.png)
+
