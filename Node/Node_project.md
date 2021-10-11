@@ -201,7 +201,7 @@ exports.up = function(knex) {
         table.text('logoUrl');
         table.timestamp('createdAt').defaultTo(knex.fn.now());
     });
-};
+};  
 
 exports.down = function(knex) {
     return knex.schema.dropTable('cohorts');
