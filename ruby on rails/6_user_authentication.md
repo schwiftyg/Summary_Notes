@@ -361,3 +361,29 @@ Show user in `Question#show`.
 ```
 rails g migration add_user_references_to_answers user:references
 ```
+
+in models
+
+@question.rb
+
+```
+#question.rb
+belongs_to :user
+```
+
+```
+#user.rb
+has_many :answers, dependent: :nullify
+has_many :questions, dependent: :nullify
+
+```
+
+
+
+show.html.erb
+```
+<h5>
+    Created by: <%= @question.user.first_name %>
+</h5>
+
+```
