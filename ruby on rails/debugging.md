@@ -101,3 +101,25 @@ already have record
 
 ![Screenshot from 2021-10-12 10-58-23](https://user-images.githubusercontent.com/21187699/137006073-a6f359b7-502f-441f-8bf2-2036ddb044f0.png)
 
+
+
+# rails db:migrate== 20211012191947 AddUserReferencesToQuestions: migrating =====================
+-- add_reference(:questions, :user, {:null=>false, :foreign_key=>true})
+rails aborted!
+StandardError: An error has occurred, this and all later migrations canceled:
+
+PG::NotNullViolation: ERROR:  column "user_id" contains null values
+/home/harry/awesome_current/awesome_answers/db/migrate/20211012191947_
+
+
+![Screenshot from 2021-10-12 12-25-44](https://user-images.githubusercontent.com/21187699/137016947-d00ffac0-767d-4f8c-8c50-24610396e7f2.png)
+
+
+recreate db
+
+```sh
+rails db:drop
+rails db:create
+rails db:migrate
+
+```

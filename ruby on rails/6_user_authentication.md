@@ -357,3 +357,7 @@ end
 ```
 
 Show user in `Question#show`.
+
+```
+rails g migration add_user_references_to_answers user:references
+```
