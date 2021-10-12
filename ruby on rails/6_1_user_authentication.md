@@ -242,21 +242,23 @@ We use `form_tag` instead of `form_for` to create the session new form, because 
 
 ```html
 <!-- app/views/sessions/new.html.erb -->
+
 <h1>Sign In</h1>
 
-<%= form_tag sessions_path do %>
-  <div>
-    <%= label_tag :email %>
-    <%= email_field_tag :email %>
-  </div>
-  <div>
-    <%= label_tag :password %>
-    <%= password_field_tag :password %>
-  </div>
-  <div>
-    <%= submit_tag "Log In" %>
-  </div>
+<%= form_with url: session_path do |form| %>
+<div>
+    <%= form.label :email%>
+    <%= form.text_field :email%>
+</div>
+<div>
+    <%= form.label :password%>
+    <%= form.text_field :password%>
+</div>
+<%= form.submit "Sign In"%>
 <% end %>
+
+<h1>Sign In</h1>
+
 ```
 
 ## Implement the `SessionsController` Destroy action
@@ -514,3 +516,5 @@ before_action :authenticate_user! , except: [:index, :show]
 ```
  @product.user = current_user
 ``` 
+
+
