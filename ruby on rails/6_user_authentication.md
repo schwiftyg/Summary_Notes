@@ -78,7 +78,7 @@ For more details on this method checkout [this link](http://api.rubyonrails.org/
 In order for this method to work we have to have the `bcrypt` gem added to our `Gemfile`. The gem is commented out by default with a new Rails project so we just uncomment that line and run `bundle` in our terminal.
 
 ```shell
-rails g controller users --no-helper
+rails g controller users --no-helper --no-assets
 ```
 
 ## Implement the `UsersController` Actions
@@ -180,6 +180,11 @@ After that, w
 
 ## Implement the `SessionsController`
 
+make sessions
+```sh 
+rails g controller sessions --no-helper --no-assets
+```
+
 We implement the `SessionsController` as a standard Rails controller with two actions `new` and `create`. We utilize the `@user.authenticate` method which comes with the `has_secure_password` method. This method takes a `password` and hashes it the same way it was hashed the first time and compares the outcome with `password_digest`. If the outcome is the same it means that the user has entered the correct password so the method returns true. If the password is not the same then the method will return false. This is because we can’t go from `password_digest` to a clear-text `password`. We can only go one way with Hashing algorithms.
 
 ```ruby
@@ -235,7 +240,16 @@ We can accomplish this by adding the destroy route with `on: :collection` option
 ```ruby
 # config/routes.rb
 resource :sessions, only: [:new, :destroy, :create]
+# `resource` is singular instead of `resources`
+  # Unlike `resources`, `resource` will create routes that do CRUD opreation
+  # on only one thing. Also there will be no index reoutes, and no route will
+  # have an `:id` wildcard. but the controller name is still plural
+
 ```
+``` both works sessions and session
+resource :session, only: [:new, :create, :destroy]  
+```
+
 
 ```ruby
 # app/controllers/sessions_controller.rb
