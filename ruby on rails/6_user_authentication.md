@@ -130,6 +130,8 @@ We now implement the `new` and `create` actions for the `UsersController`. First
 
 ```ruby
 # config/routes.rb
+get('/',{to:'welcome#index' , as: 'root'})
+
 resources :users, only: [:new, :create]
 ```
 
