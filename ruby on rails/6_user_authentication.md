@@ -77,13 +77,65 @@ For more details on this method checkout [this link](http://api.rubyonrails.org/
 
 In order for this method to work we have to have the `bcrypt` gem added to our `Gemfile`. The gem is commented out by default with a new Rails project so we just uncomment that line and run `bundle` in our terminal.
 
+```shell
+rails g controller users --no-helper
+```
+
 ## Implement the `UsersController` Actions
+```
+#controllers\users_controller.rb`
+class UsersController < ApplicationController
+    def new
+    end    
+end
+```
+
+
+implement the `new.html.erb` template.
+
+```html
+<!-- app/views/users/new.html.erb -->
+<h1>Sign Up </h1>
+    <% if @user.errors.any?%>
+        <p><%= @user.errors.full_messages.join(', ')%></p>
+    <% end%>
+    <%= form_with model: @user do |form| %>
+    <div>
+        <%= form.label :first_name%>
+        <%= form.text_field :first_name%>
+    </div>
+    <div>
+        <%= form.label :last_name%>
+        <%= form.text_field :last_name%>
+    </div>
+    <div>
+        <%= form.label :email%>
+        <%= form.text_field :email%>
+    </div>
+    <div>
+        <%= form.label :password%>
+        <%= form.text_field :password%>
+    </div>
+    <div>
+        <%= form.label :password_confirmation%>
+        <%= form.text_field :password_confirmation%>
+    </div>
+    <%= form.submit "Sign Up"%>
+<% end %> 
+```
+
+
 
 We now implement the `new` and `create` actions for the `UsersController`. Firstly, we add a user resources route:
 
 ```ruby
 # config/routes.rb
 resources :users, only: [:new, :create]
+```
+
+open brower
+```
+http://localhost:3000/users/new
 ```
 
 Then, we implement the new and create actions as standard ones with Rails CRUD.
@@ -96,7 +148,7 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new user_params
+    @user = User.new(user_params)
     if @user.save
       session[:user_id] = @user.id
       redirect_to root_path, notice: "Logged In!"
@@ -122,44 +174,7 @@ end
 The only difference from a standard CRUD is that after the users successfully create their user record we add `sessions[:user_id] = @user.id`. This way, we authenticate the user to our website using the session upon successful account creation.
 
 
-After that, we implement the `new.html.erb` template.
-
-```html
-<!-- app/views/users/new.html.erb -->
-<h1>Sign Up</h1>
-
-<% if @user.errors.any? %>
-  <ul>
-    <% @user.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-    <% end %>
-  </ul>
-<% end %>
-
-<%= form_for @user do |f| %>
-  <div>
-    <%= f.label :first_name %>
-    <%= f.text_field :first_name %>
-  </div>
-  <div>
-    <%= f.label :last_name %>
-    <%= f.text_field :last_name %>
-  </div>
-  <div>
-    <%= f.label :email %>
-    <%= f.email_field :email %>
-  </div>
-  <div>
-    <%= f.label :password %>
-    <%= f.password_field :password %>
-  </div>
-  <div>
-    <%= f.label :password_confirmation %>
-    <%= f.password_field :password_confirmation %>
-  </div>
-  <%= f.submit %>
-<% end %>
-```
+After that, w
 
 ## Implement the `SessionsController`
 
