@@ -133,3 +133,14 @@ change application.html.erb
 <%= yield %>
 
 ```
+
+## user must exit in create products
+
+![Screenshot from 2021-10-12 15-05-25](https://user-images.githubusercontent.com/21187699/137035591-1d3efc58-eb22-4d88-94a6-4f8c14ea17d5.png)
+
+
+`products_controller.rb` add user
+
+```
+ @product.user = current_user
+``` 

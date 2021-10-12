@@ -387,3 +387,130 @@ show.html.erb
 </h5>
 
 ```
+
+
+# generate user 
+
+
+```shell
+rails g controller users --no-helper --no-assets
+```
+
+## Implement the `UsersController` Actions
+```
+#controllers\users_controller.rb`
+class UsersController < ApplicationController
+    def new
+    end    
+end
+```
+
+
+implement the `new.html.erb` template.
+
+```html
+<!-- app/views/users/new.html.erb -->
+<h1>Sign Up </h1>
+    <% if @user.errors.any?%>
+        <p><%= @user.errors.full_messages.join(', ')%></p>
+    <% end%>
+    <%= form_with model: @user do |form| %>
+    <div>
+        <%= form.label :first_name%>
+        <%= form.text_field :first_name%>
+    </div>
+    <div>
+        <%= form.label :last_name%>
+        <%= form.text_field :last_name%>
+    </div>
+    <div>
+        <%= form.label :email%>
+        <%= form.text_field :email%>
+    </div>
+    <div>
+        <%= form.label :password%>
+        <%= form.text_field :password%>
+    </div>
+    <div>
+        <%= form.label :password_confirmation%>
+        <%= form.text_field :password_confirmation%>
+    </div>
+    <%= form.submit "Sign Up"%>
+<% end %> 
+```
+
+
+
+We now implement the `new` and `create` actions for the `UsersController`. Firstly, we add a user resources route:
+
+```ruby
+# config/routes.rb
+get('/',{to:'welcome#index' , as: 'root'})
+
+resources :users, only: [:new, :create]
+```
+
+open brower
+```
+http://localhost:3000/users/new
+```
+
+Then, we implement the new and create actions as standard ones with Rails CRUD.
+
+```ruby
+# app/controllers/users_controller.rb
+class UsersController < ApplicationController
+  def new
+    @user = User.new
+  end
+
+  def create
+    @user = User.new(user_params)
+    if @user.save
+      session[:user_id] = @user.id
+      redirect_to root_path, notice: "Logged In!"
+    else
+      render :new
+    end
+  end
+
+  private
+
+  def user_params
+    params.require(:user).permit(
+      :first_name,
+      :last_name,
+      :email,
+      :password,
+      :password_confirmation
+    )
+  end
+end
+```
+
+
+
+## *Complete the User Authentication system for your Amazon application as follows:
+
+- At the top, display the current user name and a logout link if they are signed in or 
+- display a sign up and a sign in link if they are not
+- Enforce that the user must be signed in to create products or reviews
+- Make sure to associate the created products and reviews to the user
+- Display user names beside their reviews and their products
+
+`controller\products_controller.rb` add 
+``` ruby
+before_action :authenticate_user! , except: [:index, :show]
+```
+
+`controller\products_controller.rb` add 
+``` ruby
+before_action :authenticate_user! , except: [:index, :show]
+```
+
+
+`products_controller.rb` add user
+
+```
+ @product.user = current_user
+``` 

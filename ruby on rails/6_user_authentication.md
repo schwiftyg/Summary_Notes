@@ -177,7 +177,7 @@ end
 The only difference from a standard CRUD is that after the users successfully create their user record we add `sessions[:user_id] = @user.id`. This way, we authenticate the user to our website using the session upon successful account creation.
 
 
-After that, w
+After that,
 
 ## Implement the `SessionsController`
 
