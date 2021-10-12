@@ -1,5 +1,10 @@
 # use `resoucres` to simple code    
 
+
+```shell
+rails g controller questions
+```
+
 ## using  
 ```ruby
 # in config/routes.rb
@@ -24,6 +29,7 @@ patch('/questions/:id',{to: 'questions#update'}) #Update exist item
 delete('/questions/:id',{to: 'questions#destroy'}) #delete exist item  
 ```
 
+
 ## the other all same
 
 ```ruby  
@@ -36,9 +42,12 @@ end
 
 ```ruby
 # in app/controllers/questions_controller.rb == same
+
+before_action :find_question, only: [:edit, :update, :show, :destroy]
+
 #list all items
 def index
-  @questions = Question.all.order(created_at: :desc)    
+@questions = Question.all.order(created_at: :desc)    
 end
 # show item detail     
 def show       
@@ -46,37 +55,46 @@ end
 
 #add New Item 
 def new
-    @question = Question.new
+@question = Question.new
 end
-def create       
-    @question = Question.new(params.require(:question).permit(:title,:body))
-    if @question.save
-        flash[:notice] = "Question created successfully!"
-        redirect_to question_path(@question.id)
-    else
-        render :new
-    end
+def create           
+@question = Question.new(question_params)
+if @question.save
+    flash[:notice] = "Question created successfully!"
+    redirect_to question_path(@question.id)
+else
+    render :new
+end
 end
 
 #Edit exist Item
 def edit       
 end
-def update  
-  question_params = params.require(:question).permit(:title, :body)
-  question = Question.find params[:id]
-   if question.update question_params
-      redirect_to question_path(question)    
-   else
-      render :edit
-   end 
+def update    
+if @question.update(question_params)   
+  redirect_to question_path(question)    
+else
+  render :edit
+end 
 end
 
 #delete exist item  
 
-def destroy
-  Question.find params[:id].destroy
-  redirect_to questions_path
+def destroy  
+@question.destroy
+redirect_to questions_path
 end
+
+private 
+
+def find_question
+    @question = Question.find params[:id]
+end
+
+def question_params
+    params.require(:question).permit(:title,:body)
+end
+
 ```
  
 
