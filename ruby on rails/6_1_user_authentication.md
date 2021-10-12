@@ -55,6 +55,30 @@ bundle
 ```
 
 
+```
+rails g migration add_user_references_to_products user:references
+```
+```
+rails g migration add_user_references_to_reviews user:references
+````
+
+because have seeds file 
+
+```sh
+rails db:drop
+rails db:create
+rails db:migrate
+```
+ 
+
+ `\models\products.rb`
+
+belongs_to :user
+
+ `\models\review.rb`
+
+belongs_to :user
+
 ## Call `has_secure_password` in User Model
 
 We call the `has_secure_password` method in the `User` model. This adds a few features to the model:
@@ -67,6 +91,9 @@ class User < ApplicationRecord
     # it requires a column named password_digest and the gem bcrypt
     # it will add a presence validation ro the password field
     # it will add two attribute accessor for `passowrd` and `password_confirmation`
+
+    has_many :products, dependent: :destroy
+    has_many :reviews,  dependent: :destroy
 end
 ```
 
@@ -295,7 +322,7 @@ Which will redirect the user to the sign in page if they are not authenticated.
 
 ```ruby
 # app/controllers/posts_controller.rb
-before_action :authenticate_user!, except: [:index, :show]
+#before_action :authenticate_user!, except: [:index, :show]
 ```
 
 ```ruby
@@ -310,23 +337,7 @@ before_action :authenticate_user!, except: [:index, :show]
 <% end %>
 <hr>
 ```
-
-## Implement Questions belonging to Users
-
-Once the `Users` table has been created we can relate a `Question` to a user at the database level by creating a migration to add a foreign key on the `Questions` table.
-
-```sh
-rails g migration add_user_references_to_questions user:references
-```
-
-This will generate a migration file like the following:
-```ruby
-class AddUserReferencesToQuestions < ActiveRecord::Migration[5.2]
-  def change
-    add_reference :questions, :user, foreign_key: true
-  end
-end
-```
+ 
 
 ```ruby
 # app/controllers/questions_controller.rb
@@ -343,19 +354,7 @@ def create
 # app/models/question.rb
 belongs_to :user, optional: true
 ```
-
-```sh
-rails g add_user_references_to_questions user:references
-```
-
-```ruby
-# db/migrate/???_add_user_references_to_questions.rb
-class AddUserReferencesToQuestions < ActiveRecord::Migration[5.0]
-  def change
-    add_reference :questions, :user, foreign_key: true
-  end
-end
-```
+  
 
 Show user in `Question#show`.
 

@@ -121,5 +121,15 @@ recreate db
 rails db:drop
 rails db:create
 rails db:migrate
+```
+
+
+
+
+## menu on bottom
+change application.html.erb
+
+```  this is content
+<%= yield %>
 
 ```
