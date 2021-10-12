@@ -43,57 +43,58 @@ end
 ```ruby
 # in app/controllers/questions_controller.rb == same
 
-before_action :find_question, only: [:edit, :update, :show, :destroy]
+  before_action :find_question, only: [:edit, :update, :show, :destroy]
 
-#list all items
-def index
-@questions = Question.all.order(created_at: :desc)    
-end
-# show item detail     
-def show       
-end
+  #list all items
+  def index
+     @questions = Question.all.order(created_at: :desc)    
+  end
+  # show item detail     
+  def show       
+  end
 
-#add New Item 
-def new
-@question = Question.new
-end
-def create           
-@question = Question.new(question_params)
-if @question.save
+  #add New Item 
+  def new
+     @question = Question.new
+  end
+  
+  def create           
+  @question = Question.new(question_params)
+  if @question.save
     flash[:notice] = "Question created successfully!"
     redirect_to question_path(@question.id)
-else
+  else
     render :new
-end
-end
+  end
+  end
 
-#Edit exist Item
-def edit       
-end
-def update    
-if @question.update(question_params)   
-  redirect_to question_path(question)    
-else
-  render :edit
-end 
-end
+  #Edit exist Item
+  def edit       
+  end
+  def update    
+    if @question.update(question_params)   
+      redirect_to question_path(question)    
+    else
+      render :edit
+    end 
+  end
 
-#delete exist item  
+  #delete exist item  
 
-def destroy  
-@question.destroy
-redirect_to questions_path
-end
+  def destroy  
+    @question.destroy
+    redirect_to questions_path
+  end
 
-private 
+  private 
 
-def find_question
+  def find_question
     @question = Question.find params[:id]
-end
+  end
 
-def question_params
+  def question_params
     params.require(:question).permit(:title,:body)
-end
+  end
 
 ```
  
