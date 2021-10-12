@@ -28,3 +28,23 @@ def change
   end
 end
 ```
+
+# Required 
+```
+null: false
+```
+
+# unique
+```
+unique: true
+```
+
+```ruby
+class CreateFoobars < ActiveRecord::Migration
+  def change
+    create_table :foobars do |t|
+      t.string :name, index: {unique: true}
+    end
+  end
+end
+```
