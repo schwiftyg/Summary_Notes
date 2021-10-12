@@ -88,3 +88,16 @@ comment
 bundle exec rake webpacker:install
 ```
 https://stackoverflow.com/questions/54113179/rails-webpackermanifestmissingentryerror-in-homeindex
+
+
+
+## ActiveRecord::RecordNotUnique in UsersController#create
+
+check database
+
+![Screenshot from 2021-10-12 10-57-25](https://user-images.githubusercontent.com/21187699/137005970-7aaf1718-21eb-4c64-9523-ace28efb7b79.png)
+
+already have record
+
+![Screenshot from 2021-10-12 10-58-23](https://user-images.githubusercontent.com/21187699/137006073-a6f359b7-502f-441f-8bf2-2036ddb044f0.png)
+
