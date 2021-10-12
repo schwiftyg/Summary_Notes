@@ -38,6 +38,12 @@ null: false
 ```
 unique: true
 ```
+# unique within another field
+
+?
+
+
+rails generate migration add_index_to_table_name column_name:uniq
 
 ```ruby
 class CreateFoobars < ActiveRecord::Migration

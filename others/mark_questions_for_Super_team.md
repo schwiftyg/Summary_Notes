@@ -1,3 +1,5 @@
+# just a pair wrong labels, the total 15 items for marks,   100/15 each mark points is 6.66,  I just one items may lost 50% point , so it should be 100-6.66/3= 96.67 , not 84 ,.
+
 # SUPER TEAM PICKER HOMEWORK 4
 ## SCORESHEET FOR STUDENT Harry
 Create an Express app with Postgres to store cohorts.
@@ -80,8 +82,9 @@ it is not big deal, right now code is the best of all the three version, just a 
 
 and I also did a lot of extra works, and basic on  make an app auto_unsplash https://github.com/harryji168/auto_unsplash and full screenshot readme https://github.com/harryji168/Summary_Notes/blob/99ad209d1f72c95fc94556ccea11b31f9d00c685/Node/Node_project.md
 
-the mark lady didn't pay attention of whole pictures of my work, work history, and extra works, 
+the marking lady didn't pay attention of whole pictures of my work, work history, and extra works, 
 the total ASSIGNMENT RUBRIC should higher than 84 now.  
+
 
 
 

@@ -6,3 +6,6 @@ PM_Tool
 
 
 # how to models:Task: title (required & unique within a project) and due_date
+
+
+### why not follow scaffols_crud?
