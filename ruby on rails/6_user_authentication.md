@@ -12,32 +12,60 @@ Before running `rails db:migrate` we can optionally add an index on the `email` 
 
 ```ruby
 # db/migrate/???_create_users.rb
-class CreateUsers < ActiveRecord::Migration
+class CreateUsers < ActiveRecord::Migration[6.1]
   def change
     create_table :users do |t|
       t.string :first_name
       t.string :last_name
-      t.string :email , index:{unique: true}
+      t.string :email, index:{unique: true}
       # this will add index to column email when you do query, it will speed up the query
-
+      
       t.string :password_digest
 
-
-      t.timestamps null: false
+      t.timestamps
     end
-    add_index :users, :email
   end
 end
 ```
+
+```sh
+rails db:migrate
+```
+
+## in `schema.rb`
+```ruby 
+create_table "users", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.string "email"
+    t.string "password_digest"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
+end
+```
+
+# Use Active Model has_secure_password `Gemfile`
+
+gem 'bcrypt', '~> 3.1.7'
+
+```sh
+bundle
+```
+
 
 ## Call `has_secure_password` in User Model
 
 We call the `has_secure_password` method in the `User` model. This adds a few features to the model:
 
 ```ruby
-class User < ApplicationRecord
-  has_secure_password
-  # ...
+class User < ApplicationRecord 
+  
+    has_secure_password
+
+    # it requires a column named password_digest and the gem bcrypt
+    # it will add a presence validation ro the password field
+    # it will add two attribute accessor for `passowrd` and `password_confirmation`
 end
 ```
 
