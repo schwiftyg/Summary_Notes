@@ -57,3 +57,34 @@ http://localhost:3000/questionserret
 ```
 
 ![Screenshot from 2021-10-10 14-43-20](https://user-images.githubusercontent.com/21187699/136713846-86adccfe-663e-4c36-a194-7edaa1e3a67e.png)
+
+
+
+## A server is already running. Check …/tmp/pids/server.pid. Exiting 
+
+```sh
+kill -9 $(lsof -i tcp:3000 -t)
+```
+
+
+## check log 
+
+`log\development.log`
+
+
+## delete not popup
+no javascript , cause by
+ 
+in `app\views\layouts\application.html.erb` 
+comment 
+```ruby
+ <%# javascript_pack_tag 'application' %>
+ ```
+
+ ## Rails: Webpacker::Manifest::MissingEntryError in Home#index
+
+ run
+ ```sh
+bundle exec rake webpacker:install
+```
+https://stackoverflow.com/questions/54113179/rails-webpackermanifestmissingentryerror-in-homeindex

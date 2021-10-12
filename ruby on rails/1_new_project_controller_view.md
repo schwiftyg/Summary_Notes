@@ -228,12 +228,13 @@ if make mistake, need delete controller
 rails d controller welcome
 ```  
 
-  
+# if have error:  
 ## error "Webpacker::Manifest::MissingEntryError in Home#home"
 
-?? ruby version 3.0.0 not accept 
-in `app\views\layouts\application.html.erb` 
-comment 
-```ruby
- <%# javascript_pack_tag 'application' %>
- ```
+ ## Rails: Webpacker::Manifest::MissingEntryError in Home#index
+
+ run
+ ```sh
+bundle exec rake webpacker:install
+```
+https://stackoverflow.com/questions/54113179/rails-webpackermanifestmissingentryerror-in-homeindex
