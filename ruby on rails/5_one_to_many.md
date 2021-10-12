@@ -36,7 +36,7 @@ end
 Rails generator automatically adds a `belongs_to` statement in the model. This will help us later work with associated records. Now we need to set up the association from the `Question` model:
 
 ```ruby
-# /db/models/answers.rb
+# /db/models/qestions.rb
 class Question < ActiveRecord::Base
   has_many :answers, dependent: :destroy
 end
