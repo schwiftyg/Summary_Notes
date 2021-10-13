@@ -518,3 +518,8 @@ before_action :authenticate_user! , except: [:index, :show]
 ``` 
 
 
+`reviews_controller.rb` add user
+
+```
+ @review.user = current_user
+``` 
