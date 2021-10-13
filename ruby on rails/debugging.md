@@ -154,3 +154,27 @@ belongs_to :user
 ```
 
 
+## ailed to push some refs to git@heroku.com
+
+```
+git checkout -b masterbranch
+```
+```
+git push heroku masterbranch
+```
+
+
+```
+bundle lock --add-platform x86-mingw32 x86-mswin32 x64-mingw32 java
+```
+
+## How do I delete/destroy a Heroku application?
+```sh
+heroku apps:destroy awasome
+```
+
+## whereis ruby
+```
+whereis ruby
+```
+cd /home/harry/.rvm/rubies

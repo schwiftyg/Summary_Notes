@@ -256,7 +256,18 @@ $(function () {
 <% eleif flash[:alert].present?%>
 
 
+# https://devcenter.heroku.com/articles/heroku-cli
+```
+sudo snap install --classic heroku
+```
 
+
+```
+heroku login
+```
+
+error: src refspec master does not match any
+error: failed to push some refs to 'https://git.heroku.com/awesome16888.git'
 
 
 # Deploying to Heroku
