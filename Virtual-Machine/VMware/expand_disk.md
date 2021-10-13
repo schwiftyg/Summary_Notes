@@ -6,10 +6,13 @@
 
 3. power linux
 
-From Ubuntu (in VM) install gparted by executing sudo apt-get install gparted in terminal
-Open sudo gparted from terminal
-Rightclick on the swap partition, click "swapoff"
-Delete swap partition
-Extend your data partition, but leave enough space to create a new swap partition
-Recreate swap partition with about the same size as before, select linux-swap as file system
-Click that green tick in gparted to apply all operations. Then select "swapon" to enable swap again
+From Ubuntu (in VM) install gparted by executing 
+``sh
+sudo apt-get install gparted in terminal
+``
+- Open sudo gparted from terminal
+- Rightclick on the swap partition, click "swapoff"
+- Delete swap partition
+- Extend your data partition, but leave enough space to create a new swap partition
+- Recreate swap partition with about the same size as before, select linux-swap as file system
+- Click that green tick in gparted to apply all operations. Then select "swapon" to enable swap again
