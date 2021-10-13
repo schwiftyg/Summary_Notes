@@ -152,3 +152,5 @@ in `models` add
 ```
 belongs_to :user 
 ```
+
+

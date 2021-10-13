@@ -112,6 +112,150 @@ after add
     end
 ```    
 
+# setup Super_user
+
+```sh
+rails g migration add_is_admin_to_users is_admin:boolean
+```
+
+```sh
+rails db:migrate
+```
+
+# set seed file
+
+```
+# This file should contain all the record creation needed to seed the database with its default values.
+# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
+#
+# Examples:
+#
+#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
+#   Character.create(name: 'Luke', movie: movies.first)
+# delete
+# destroy
+User.destroy_all
+Answer.destroy_all
+Question.destroy_all
+
+PASSWORD = '123'
+
+super_user = User.create(
+    first_name: "Admin",
+    last_name: "User",
+    email: "admin@user.com",
+    password: PASSWORD,
+    is_admin: true
+)
+
+5.times do 
+    first_name = Faker::Name.first_name
+    last_name = Faker::Name.last_name
+    User.create(
+        first_name:first_name,
+        last_name: last_name,
+        email: "#{first_name}@#{last_name}.com",
+        password: PASSWORD
+    )
+end
+
+users = User.all
+
+20.times do
+    created_at = Faker::Date.backward(days:365 * 5)
+
+    q = Question.create(
+       title: Faker::Hacker.say_something_smart,
+       body: Faker::ChuckNorris.fact,
+       view_count: rand(100_000),
+       created_at: created_at,
+       updated_at: created_at,
+       user: users.sample
+    )
+    if q.valid?
+        rand(1..5).times do
+            Answer.create(body:Faker::Hacker.say_something_smart, question:q, user: users.sample)
+        end
+    end
+end
+
+questions = Question.all
+answers = Answer.all
+
+puts Cowsay.say("Generated #{questions.count} questions", :frogs)
+puts Cowsay.say("Generated #{answers.count} answers", :cow)
+puts Cowsay.say("Generated #{users.count} users", :koala)
+```
+
+run seeds file
+
+```
+rails db:seed
+```
+or 
+
+```
+rails db:reset
+```
+
+
+# install boostap 
+```
+gem 'bootstap', '>= 4.6.0', require: false
+```
+
+``` 
+yarn add bootstrap@4.6.0 jquery popper.js
+```
+
+check package.json
+
+environment.js
+```
+const { environment } = require('@rails/webpacker')
+const webpack = require("webpack")
+environment.plugins.append("Provide", new webpack.ProvidePlugin({
+    $: 'jquery',
+    jQuery: 'jquery',
+    Popper: ['popper.js', 'default']
+}))
+module.exports = environment
+```
+
+change rename application.css to  application.scss
+
+add
+```
+@import "bootstrap"
+```
+
+
+
+test 
+
+console.log("hello from app/js/packs/application.js");
+
+$(function () {
+    console.log($("nav")[0]);
+})
+
+
+
+
+# add jquery button to  application.html.erb
+
+<% if flash[:notice].present?%>
+        <div class="alert alert-success aler-dismissible fade show" role="alert">
+          <%= flash[:notice]%>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">
+            &times;
+          </span>
+          </button>
+        </div>
+<% eleif flash[:alert].present?%>
+
+
 
 
 
