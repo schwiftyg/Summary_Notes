@@ -146,6 +146,8 @@ change application.html.erb
 ``` 
 
 ## authorize in answer, not current_id
+another routes question rails aborted!
+ActiveModel::UnknownAttributeError: unknown attribute 'user' for Answer.
 
 in `models` add
 
