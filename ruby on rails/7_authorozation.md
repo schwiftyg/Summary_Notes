@@ -48,6 +48,17 @@ class Ability
     #
     # See the wiki for details:
     # https://github.com/CanCanCommunity/cancancan/wiki/Defining-Abilities
+
+    alias_action(:create, :read, :update, :destroy, to: :crud)
+
+    can(:crud, Question) do |question|
+      user == question.user
+    end
+
+    can(:crud, Answer) do |answer|
+      user == answer.user
+    endk
+    
   end
 end
 ```
@@ -56,16 +67,52 @@ end
 before add
 
 ```
- before_action :authorize_user!, only: [:update]
+ before_action :authorize_user!, only: [:update , :destroy ]
  ```
 
  after add 
 
 ```
 def authorize_user!
-        redirect_to root_path, alert: "Not Authorized!" unless can?(:update, @question)
+      ## redirect_to root_path, alert: "Not Authorized!" unless can?([:update,:destroy], @question)
+
+      redirect_to root_path, alert: "Not Authorized!" unless can?(:crud, @question)
+   
 end
 ```
+
+
+### modify  `answer_controller.rb`
+
+before add
+
+```
+ before_action :authorize_user!, only: [:update , :destroy ]
+ ```
+
+after add 
+
+```
+    private
+
+    def find_question
+        @question = Question.find params[:question_id]
+    end    
+
+    def find_answer
+        @answer = Answer.find params[:id]
+    end
+
+    def answer_params
+        params.require(:answer).permit(:body)
+    end
+    
+    def authorize_user!
+        redirect_to root_path, alert: 'Not Authorized' unless can?(:crud, @answer)
+    end
+```    
+
+
 
 
 # Deploying to Heroku

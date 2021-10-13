@@ -144,3 +144,11 @@ change application.html.erb
 ```
  @product.user = current_user
 ``` 
+
+## authorize in answer, not current_id
+
+in `models` add
+
+```
+belongs_to :user 
+```
