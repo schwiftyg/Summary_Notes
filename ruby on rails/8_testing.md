@@ -30,6 +30,43 @@ To set up MiniTest, simply install the gem:
 gem install minitest
 ```
 
+![Screenshot from 2021-10-14 09-49-13](https://user-images.githubusercontent.com/21187699/137361731-0e9dcbb9-f7a3-432f-a95e-b6d098237deb.png)
+
+```
+mkdir minitest
+cd minitest
+```
+
+
+make file  `AwesomeTest.rb`
+````
+equire "minitest/autorun"
+
+
+# To create a grouping of tests with MiniTest,
+# create a class whose name ends in `Test` and inherits from MiniTest::Test
+class AwesomeTest < MiniTest::Test
+
+    def test_something
+        
+    end
+    
+
+end
+
+```
+
+```run test
+ruby AwesomeTest.rb
+```
+![Screenshot from 2021-10-14 10-01-57](https://user-images.githubusercontent.com/21187699/137363444-cbac237a-d7e7-49fa-92a7-a406b1a26856.png)
+
+change 
+```
+ assert_equal(3, 1+1)
+``` 
+![Screenshot from 2021-10-14 10-04-39](https://user-images.githubusercontent.com/21187699/137363828-23461bf1-0373-4b7b-bf7e-3d75a46d3a96.png)
+
 ## Writing Your first test
 Let's say you have a `Cookie` class in file `cookie.rb`:
 ```ruby
