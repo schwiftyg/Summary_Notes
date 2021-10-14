@@ -183,3 +183,19 @@ cd /home/harry/.rvm/rubies
 
 ## which ruby
 /home/harry/.rvm/rubies/ruby-3.0.0/bin/ruby
+
+
+
+
+## if no error, no fails when 
+
+just go top
+```
+cd ..
+```
+then have error
+![Screenshot from 2021-10-14 12-00-02](https://user-images.githubusercontent.com/21187699/137379430-06e4f84b-f53d-4cd1-a3c9-f17cd3f110f4.png)
+
+fixed sentense then failure
+
+![Screenshot from 2021-10-14 12-03-20](https://user-images.githubusercontent.com/21187699/137379843-03c0f315-4bd3-444d-81d4-ff4a5ace7afb.png)

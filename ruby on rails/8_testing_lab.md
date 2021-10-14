@@ -1,3 +1,11 @@
+[Lab] Circle Class
+Write a Circle class following TDD principles. Initialize the circle with a radius attribute. It should have the following 3 methods:
+
+- diameter method that returns the diameter.
+- area method that returns the area of the circle. Test with various circles that the area returned is correct.
+- perimeter method that returns the length of circle's border (or perimeter). Test with various circles that the perimeter returned is correct.
+
+
 # TDD & MiniTest
 
 ## Test Driven Development Process
@@ -26,9 +34,23 @@ You can use MiniTest to write simple tests in Ruby. It can be used with Rails as
 
 ## Setting Up
 To set up MiniTest, simply install the gem:
-```shell
+```shell 
 gem install minitest
 ```
+gem minitest  will install global, and don't need include `Gemfile`
+it already in gemfile.lock
+
+
+![Screenshot from 2021-10-14 14-33-14](https://user-images.githubusercontent.com/21187699/137398728-618fb5a0-7be3-4a8c-bde1-918b3ff3c64e.png)
+
+gemfile is for peoplre edit
+gemfile.lock is generate for machine
+
+same with  
+package.json
+package.lock 
+
+just package form nom, gem file for ruby
 
 ![Screenshot from 2021-10-14 09-49-13](https://user-images.githubusercontent.com/21187699/137361731-0e9dcbb9-f7a3-432f-a95e-b6d098237deb.png)
 
@@ -36,6 +58,8 @@ gem install minitest
 mkdir minitest
 cd minitest
 ```
+
+
 
 
 ### make file  `AwesomeTest.rb`
