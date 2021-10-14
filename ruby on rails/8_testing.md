@@ -189,6 +189,22 @@ end
 ```
 
 
+# rspec-rails install
+add gem file 
+```
+gem 'rspec-rails'
+```
+
+```sh
+bundle
+```
+
+
+```sh
+rails g rspec:install
+```
+
+![Screenshot from 2021-10-14 11-09-38](https://user-images.githubusercontent.com/21187699/137372614-c0b563b5-adfb-466d-b431-97b927eafac0.png)
 
 
 
