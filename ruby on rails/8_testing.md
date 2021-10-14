@@ -150,6 +150,46 @@ ruby VectorTest.rb
 
 Break
 
+##  add another new file rectangle_test.rb
+rectangle_test.rb
+```
+require "minitest/autorun"
+require "./rectangle.rb"
+
+class RectangleTest < MiniTest::Test
+    
+    def test_area
+        # GIVEN
+        rectangle = Rectangle.new(2, 10)
+        # WHEN
+        area = rectangle.area
+        # THEN
+        assert_equal(20, area)
+    end
+    
+
+end
+```
+
+
+## add rectangle.rb
+
+```
+class Rectangle
+    def initialize(length, width)
+        @length = length
+        @width = width
+    end
+
+    def area
+        @length * @width
+    end
+    
+end
+```
+
+
+
 
 
 ## Writing Your first test
