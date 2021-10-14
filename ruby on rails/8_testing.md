@@ -38,8 +38,8 @@ cd minitest
 ```
 
 
-make file  `AwesomeTest.rb`
-````
+### make file  `AwesomeTest.rb`
+``` ruby 
 equire "minitest/autorun"
 
 
@@ -65,7 +65,92 @@ change
 ```
  assert_equal(3, 1+1)
 ``` 
+it should error message 
+
 ![Screenshot from 2021-10-14 10-04-39](https://user-images.githubusercontent.com/21187699/137363828-23461bf1-0373-4b7b-bf7e-3d75a46d3a96.png)
+
+
+### make another file Vector.rb
+```ruby 
+class Vector
+    attr_accessor(:x, :y)
+    def initialize(x, y)
+        @x = x 
+        @y = y
+    end
+     
+    def length
+        Math.sqrt(@x ** 2 + @y ** 2)
+    end
+end
+```
+
+### make test this class  VectorTest.rb
+
+```ruby
+require "minitest/autorun"
+require "./Vector.rb"
+
+class VectorTest < MiniTest::Test
+    def test_length
+        # GIVEN - the initial state of our program
+        # a vector of (3, 4)
+        vector = Vector.new(3 ,4)
+
+        # WHEN - an action is triggered
+        # Then length method is called
+        length_of_vector = vector.length
+
+        # THEN - we verify the final state
+        # The length should equal 5
+        assert_equal(5, length_of_vector)
+        
+        # When using assert_equal, the argument order is as follows
+        # 1 the value we expect or want
+        # 2 the actual value our code returned
+
+    end
+    
+end
+```
+
+run test
+
+```
+ruby VectorTest.rb
+```
+![Screenshot from 2021-10-14 10-23-17](https://user-images.githubusercontent.com/21187699/137366327-8d04204d-dafd-4db6-97d3-738c65e25455.png)
+
+
+## modify Vector.rb add 
+```
+def to_s
+        "Vector (#{@x}, #{@y})"
+end
+```
+### modify VectorTest.rb add 
+
+```
+def test_to_s
+        # GIVEN 
+        vector = Vector.new(1, 1)
+        # WHEN
+        to_s = vector.to_s
+        # THEN
+        assert_equal("Vector (1, 1)", to_s)        
+    end
+```    
+
+```
+ruby VectorTest.rb
+``` 
+![Screenshot from 2021-10-14 10-34-51](https://user-images.githubusercontent.com/21187699/137367857-205d154b-914b-465a-8a43-a6accd555ff4.png)
+
+
+
+Break
+
+
 
 ## Writing Your first test
 Let's say you have a `Cookie` class in file `cookie.rb`:
