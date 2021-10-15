@@ -60,6 +60,9 @@ cd minitest
 ```
 
 
+## create class file  `circle.rb`
+ 
+ 
 
 
 ### make file  `AwesomeTest.rb`

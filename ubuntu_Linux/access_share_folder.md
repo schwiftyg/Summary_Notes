@@ -2,6 +2,7 @@
 
 Open “Computer – File Browser”, Click on “Go” –> “Location…”
 
+
 2. SMB command
 Type ftp://server/share-folder
 
