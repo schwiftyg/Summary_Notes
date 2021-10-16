@@ -43,3 +43,18 @@ http://localhost:168/phpmyadmin/
 sudo apt install mysql-client-core-8.0
 ```
 mysql
+
+change root password
+Now type the following query in the textarea and click Go
+```
+UPDATE mysql.user SET Password=PASSWORD('password') WHERE User='root'; FLUSH PRIVILEGES;
+```
+
+
+apache root path
+```
+cd /opt/lampp/htdocs
+```
+
+
+
