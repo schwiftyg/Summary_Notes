@@ -14,7 +14,7 @@ rm -rf .git
 git init
 ```
 ```
-curl https://www.toptal.com/developers/gitignore/api/node,linux,rails,macos,windows > .gitignore
+curl https://www.gitignore.io/api/node%2Clinux%2Crails%2Cmacos%2Cwindows > .gitignore
 ```
 
 add all current file and folder
@@ -53,7 +53,42 @@ click code, copy Https
 git remote add origin https://github.com/harryji168/amazing_amazon.git
 ```
 
-### force push the project
-```sh
+ 
+
+### check yo branch
+```shell
+git checkout -b blogs_in_rails
+```
+
+### push file
+```shell
+git push --set-upstream origin blogs_in_rails
+```
+
+
+# because too many files, can't do pull directly
+
+![Screenshot from 2021-10-16 09-10-02](https://user-images.githubusercontent.com/21187699/137594963-8ec5aedc-968b-443c-8e8d-2329d9b2bd88.png)
+
+
+too many file
+
+![Screenshot from 2021-10-16 09-12-05](https://user-images.githubusercontent.com/21187699/137594997-2df3a26b-0811-4694-b80c-7810992ec008.png)
+
+
+# goto checkout main
+```
+git checkout main
+```
+# go push
+``` 
 git push -u origin main --force
 ```
+
+# then can do pull
+
+![Screenshot from 2021-10-16 09-20-10](https://user-images.githubusercontent.com/21187699/137595079-0687bdca-21a0-41c7-8abd-155924b0b532.png)
+
+
+# submitthe google form
+![Screenshot from 2021-10-16 09-23-01](https://user-images.githubusercontent.com/21187699/137595109-bd30417a-e6df-4f04-9719-c0976e69da36.png)

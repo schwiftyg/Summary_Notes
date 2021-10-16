@@ -6,8 +6,19 @@ cd ~/homework
 git init
 ```
 
-Create a .gitignore file in the root directory of your project with the following inside. You can run the command below which will create it for you.
-curl https://www.gitignore.io/api/node%2Clinux%2Crails%2Cmacos%2Cwindows > .gitignore
+# Create a .gitignore file in the root directory of your project with the following inside. You can run the command below which will create it for you.
+
+curl https://www.toptal.com/developers/gitignore/api/node,linux,rails,macos,windows > .gitignore
+
+
+# Create a Github repository.
+
+Add an origin remote that links to your Github repository. You can find the <github-repo-url> on your newly created projects page as shown in the screenshot below:
+
+```shell
+git remote add origin <github-repo-url>
+```
+
 
 Add & create your first commit.
 
@@ -15,13 +26,7 @@ Add & create your first commit.
 git add .
 git commit -m 'Create project'
 ```
-Create a Github repository.
 
-Add an origin remote that links to your Github repository. You can find the <github-repo-url> on your newly created projects page as shown in the screenshot below:
-
-```shell
-git remote add origin <github-repo-url>
-```
 
 Push your master branch to your newly created Github repository.
 ```shell
