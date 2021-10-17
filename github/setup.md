@@ -83,6 +83,18 @@ Once your homework has been marked and approved, use the Merge Pull Request butt
 
 
 
+
+
+
+
+# How to fix Git always asking for user credentials
+
+
+```sh
+git config --global credential.helper store
+```
+
+
 ### without asking password when push
 
 ```shell
@@ -94,5 +106,4 @@ When asked if you would like to authenticate to Git with your GitHub credentials
 
 
 https://docs.github.com/en/get-started/getting-started-with-git/caching-your-github-credentials-in-git
-
 
