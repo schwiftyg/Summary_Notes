@@ -4,16 +4,9 @@ sometime the .git file not work properly. you need re-create
 
 ### clear old .git files
 ```sh
-rm -rf .git
-```
-
-in windows
-
-use 
-
-```sh
 del -rf .git
 ```
+
 
 ### initiate new git file
 
