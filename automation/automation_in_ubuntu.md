@@ -19,4 +19,5 @@ Your script could then retrieve the clipboard selection to do something with it:
 
 SELECTION=$(xsel -b)
 
-Some remarks:
+Some remarks:   
+
