@@ -425,3 +425,7 @@ puts Cowsay.say("Generated #{comments.count} comments", :koala)
 rails db:seed
 ```
  
+
+### general test file
+
+rails generate rspec:install
