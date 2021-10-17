@@ -78,12 +78,12 @@ Was Bootstrap installed and was attempts made to look like the mockups?
 
 ![Screenshot from 2021-10-11 13-35-42](https://user-images.githubusercontent.com/21187699/136852506-159a3eed-4056-4b64-9b00-2082d9cfc0c7.png)
 
-It is not a big deal, right now the code is the best of all the three versions. Just a little big, I should not lose all marks for this part.
+It is not a big deal, right now the code is the best of all the three versions. I should not lose all marks for this part.
 
-I also did a lot of extra work, and basic on make an app auto_unsplash https://github.com/harryji168/auto_unsplash and full screenshot readme https://github.com/harryji168/Summary_Notes/blob/99ad209d1f72c95fc94556ccea11b31f9d00c685/Node/Node_project.md
+I also did a lot of extra work regarding auto_unsplash https://github.com/harryji168/auto_unsplash. Here's the screenshot of the readme https://github.com/harryji168/Summary_Notes/blob/99ad209d1f72c95fc94556ccea11b31f9d00c685/Node/Node_project.md
 
-The marker didn't pay attention to the whole picture of my work, work history, and extra work. 
-I already uploaded the demo data for testing. She didn't review it or use it.
+The marker didn't pay attention to the full picture of my work and extra work. 
+I already uploaded the demo data for testing. She didn't review or use it.
 
 
 
