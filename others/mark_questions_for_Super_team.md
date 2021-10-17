@@ -61,7 +61,7 @@ Was Bootstrap installed and was attempts made to look like the mockups?
 
 
 
-# only problem just result reserve
+# the only problem was just the result was reserve
 
 ![Screenshot from 2021-10-11 13-05-00](https://user-images.githubusercontent.com/21187699/136851864-c707eda3-b611-4957-a053-eee1d58617e9.png)
 
@@ -69,22 +69,21 @@ Was Bootstrap installed and was attempts made to look like the mockups?
 ![Screenshot from 2021-10-11 13-05-00](https://user-images.githubusercontent.com/21187699/136851922-ba64d65c-1404-494d-b7a7-526ed29beae2.png)
 
 
-# first version, every is correct, just longer code
+# This is the first version. Every part of the code is correct, it's just longer
 
 ![Screenshot from 2021-10-11 13-33-35](https://user-images.githubusercontent.com/21187699/136852253-e13ae811-e90d-4f36-af58-6c5f01188b16.png)
 
 
-# keep improving the code, cause the result reserve
+# I kept improving the code and caused the result to reserve
 
 ![Screenshot from 2021-10-11 13-35-42](https://user-images.githubusercontent.com/21187699/136852506-159a3eed-4056-4b64-9b00-2082d9cfc0c7.png)
 
-it is not big deal, right now code is the best of all the three version, just a little bug
-, it should not lost all marks for this part.
+It is not a big deal, right now the code is the best of all the three versions. Just a little big, I should not lose all marks for this part.
 
-and I also did a lot of extra works, and basic on  make an app auto_unsplash https://github.com/harryji168/auto_unsplash and full screenshot readme https://github.com/harryji168/Summary_Notes/blob/99ad209d1f72c95fc94556ccea11b31f9d00c685/Node/Node_project.md
+I also did a lot of extra work, and basic on make an app auto_unsplash https://github.com/harryji168/auto_unsplash and full screenshot readme https://github.com/harryji168/Summary_Notes/blob/99ad209d1f72c95fc94556ccea11b31f9d00c685/Node/Node_project.md
 
-the marking lady didn't pay attention of whole pictures of my work, work history, and extra works, 
-I already uploaded the demo data for test, she even didn't saw it, not use it
+The marker didn't pay attention to the whole picture of my work, work history, and extra work. 
+I already uploaded the demo data for testing. She didn't review it or use it.
 
 
 
